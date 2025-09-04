@@ -25,6 +25,7 @@ dots-inspiration:
      https://github.com/noctalia-dev/noctalia-shell
 
 Lots of different flakes and styles to build off of!
+
 Design philosophy:
       I used hyprland for a long time (thanks to End-4). It's great! Then I 
   discovered scrolling window managers, found niri (all rust!) and I 
