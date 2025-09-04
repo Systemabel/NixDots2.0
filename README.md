@@ -1,8 +1,9 @@
 # NixDots2.0
 
-This flake is a big combination of various tutorial flakes. Namely:
-https://saylesss88.github.io/installation/index.html
-https://code.m3ta.dev/m3tam3re/nixcfg
+This flake is a big combination of various tutorial flakes. 
+Namely:
+ - https://saylesss88.github.io/installation/index.html
+ - https://code.m3ta.dev/m3tam3re/nixcfg
 
 dots-inspiration:
 https://github.com/Ly-sec/nixos
