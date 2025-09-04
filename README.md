@@ -45,5 +45,5 @@ Design philosophy:
 Some features that I'd like to add:
  - encryption and secure secrets (!!!)
  - modular packages for the most common tools
- - I want bells and whistles and every feature of a desktop working as it
-should
+ - I want bells and whistles and every feature of a desktop environment
+   working as it should
