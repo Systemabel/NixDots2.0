@@ -7,6 +7,7 @@
     ./networking.nix
     ./zram.nix
     ./niri.nix
+    ./display-manager.nix
   ];
   # programs.niri = {
   # enable = true;
