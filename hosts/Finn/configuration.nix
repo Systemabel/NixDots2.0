@@ -35,8 +35,6 @@
 
   # Custom Options
   custom = {
-    boot.enable = true;
-    users.enable = true;
     zram.enable = true;
   };
   # List packages installed in system profile.

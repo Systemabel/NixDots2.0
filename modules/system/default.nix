@@ -20,6 +20,7 @@
     fastfetch
     btop
     htop
+    tealdeer
     ghostty
     # kdePackages.kate
     # vscodium
