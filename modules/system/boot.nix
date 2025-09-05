@@ -4,8 +4,8 @@
   ...
 }: {
   boot = {
-    # LinuxZen Kernel
-    kernelPackages = pkgs.linuxPackages_zen;
+    # LinuxZen Kernel NO! Latest :)
+    kernelPackages = pkgs.linuxPackages_latest;
     consoleLogLevel = 3;
     # /tmp in RAM wiped on reboot
     tmp = {

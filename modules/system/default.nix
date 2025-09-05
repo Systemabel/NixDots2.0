@@ -6,6 +6,7 @@
     ./impermanence.nix
     ./networking.nix
     ./zram.nix
+    ./niri.nix
   ];
   # programs.niri = {
   # enable = true;

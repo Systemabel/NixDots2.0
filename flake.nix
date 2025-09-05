@@ -14,6 +14,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,11 +34,11 @@
   } @ inputs: let
     inherit (self) outputs;
     systems = [
-      "aarch64-linux"
-      "i686-linux"
+      # "aarch64-linux"
+      # "i686-linux"
       "x86_64-linux"
-      "aarch64-darwin"
-      "x86-64-darwin"
+      # "aarch64-darwin"
+      # "x86-64-darwin"
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
