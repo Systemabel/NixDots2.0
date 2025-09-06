@@ -6,11 +6,11 @@
   pkgs,
   ...
 }: {
-  systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp"
+  systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
   imports = [
     ../../modules
     ./users
-    inputs.home-manager.nixosModules.home-manager;
+    inputs.home-manager.nixosModules.home-manager
   ];
   home-manager = {
     useUserPackages = true;
