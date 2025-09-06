@@ -4,6 +4,10 @@
   pkgs,
   ...
 }: {
+  imports = [
+    ./anyrun.nix
+  ];
+
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -38,4 +42,25 @@
       warn-dirty = false;
     };
   };
+  programs.keepassxc = {
+    enable = true;
+    package = pkgs.keepassxc;
+    settings = {
+      Browser = {Enabled = true;};
+      GUI = {
+        AdvancedSettings = true;
+        ApplicationTheme = "dark";
+        CompactMode = true;
+        HidePasswords = true;
+      };
+      SSHAgent = {Enabled = true;};
+
+      # Also turn on the Secret Service provider (so you don’t need GNOME Keyring):
+      SecretService = {Enabled = true;};
+    };
+  };
+
+  # Optional: autostart
+  xdg.autostart.enable = true;
+  xdg.configFile."autostart/org.keepassxc.KeePassXC.desktop".source = "${pkgs.keepassxc}/share/applications/org.keepassxc.KeePassXC.desktop";
 }

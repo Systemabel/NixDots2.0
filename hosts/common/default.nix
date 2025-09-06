@@ -7,7 +7,7 @@
   ...
 }: {
   imports = [
-    ../../modules/system/default.nix
+    ../../modules
     ./users
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -41,17 +41,9 @@
   };
 
   nix = {
-    settings = {
-      experimental-features = "nix-command flakes";
-      trusted-users = [
-        "root"
-        "orca"
-      ]; # Set users that are allowed to use the flake command
-    };
-
     # gc is garbage collect :)
     gc = {
-      automatic = true;
+      automatic = false;
       options = "--delete-older-than 30d";
     };
     optimise.automatic = true;

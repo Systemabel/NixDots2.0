@@ -1,38 +1,14 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
     ./audio.nix
     ./bluetooth.nix
     ./boot.nix
     ./impermanence.nix
     ./networking.nix
+    ./security.nix
     ./zram.nix
-    ./niri.nix
-    ./display-manager.nix
   ];
-  # programs.niri = {
-  # enable = true;
-  # xwayland.enable = true;
-  # };
   # serivices.libinput.enable = true;
-  environment.systemPackages = with pkgs; [
-    vim
-    tree
-    bat
-    git
-    fastfetch
-    btop
-    htop
-    tealdeer
-    ghostty
-    # kdePackages.kate
-    # vscodium
-    # xdg-desktop-portal
-    # alacritty
-    # fuzzel
-    # hyprlock
-    # mako
-    # hypridle
-  ];
 
   # security.polkit.enable = true; # polkit
   # services.gnome.gnome-keyring.enable = true; # secret service

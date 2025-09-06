@@ -31,4 +31,13 @@
   };
   home-manager.users.orca =
     import ../../../home/orca/${config.networking.hostName}.nix;
+  nix = {
+    settings = {
+      experimental-features = "nix-command flakes";
+      trusted-users = [
+        "root"
+        "orca"
+      ]; # Set users that are allowed to use the flake command
+    };
+  };
 }
