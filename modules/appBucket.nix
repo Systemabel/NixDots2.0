@@ -30,7 +30,7 @@
     raffi # fuzzel replacement written in rust
     rink # calculator
     ripgrep # search tool in cli
-    servo # rust browser - try it out?
+    # servo # rust browser - try it out?
     spicetify-cli
     spotify
     swww # rust
