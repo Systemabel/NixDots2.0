@@ -18,16 +18,13 @@
         lt = "exa --tree";
         lti = "ls --tree";
         cat = "bat --color always";
-        cleanpac = "sudo pacman -Rns $(pacman -Qtdq); paru -c";
         # cleanram = "sudo sh -c '\''sync; echo 3 > /proc/sys/vm/drop_caches'\";
         cp = "cp -vr";
         mkdir = "mkdir -p";
         mv = "mv -v";
-        # pac = "pacman -Q | fzf"
         q = "exit";
         rm = "rm -vr";
-        yeet = "paru -Rsu";
-        pamcan = "pacman";
+        code = "codium";
       };
     };
     nh = {

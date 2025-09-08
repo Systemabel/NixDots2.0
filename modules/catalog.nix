@@ -9,12 +9,14 @@
       curl
       eza
       jq
+      nix-tree
       ripgrep
       tealdeer
       trash-cli
       tree
     ];
     dev = with pkgs; [
+      alejandra
       git
       vscodium
     ];
@@ -65,7 +67,8 @@
 
   # Optional: name-indexed map for program.<app>.package overrides:
   byName = {
-    anyrun = groups.anyrun;
+    alejandra = pkgs.alejandra;
+    anyrun = pkgs.anyrun;
     brightnessctl = pkgs.brightnessctl;
     btop = pkgs.btop;
     cava = pkgs.cava;
@@ -88,6 +91,7 @@
     mesa = pkgs.mesa;
     mpvpaper = pkgs.mpvpaper;
     nerd-fonts.ttf-jetbrains-mono-nerd = pkgs.nerdfonts.ttf-jetbrains-mono-nerd;
+    nix-tree = pkgs.nix-tree;
     quickshell = pkgs.quickshell;
     roboto = pkgs.roboto;
     papirus-icon-theme = pkgs.papirus-icon-theme;

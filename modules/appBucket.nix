@@ -6,6 +6,7 @@
     # well, I'll organize it all into the various sections all properly
     # organized.
 
+    alejandra
     anyrun # rust
     bat
     brightnessctl
@@ -24,6 +25,7 @@
     kdePackages.polkit-kde-agent-1
     keepassxc
     kitty
+    nix-tree
     mesa
     mpvpaper # c
     quickshell # C++

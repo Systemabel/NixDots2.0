@@ -3,6 +3,7 @@
     ./audio.nix
     ./bluetooth.nix
     ./boot.nix
+    ./graphics.nix
     ./impermanence.nix
     ./networking.nix
     ./security.nix

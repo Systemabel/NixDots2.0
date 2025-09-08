@@ -1,14 +1,19 @@
 {
   disko.devices = {
-    disk.nvme1n1 = {
+    disk.main = {
       type = "disk";
-      device = "/dev/nvme1n1";
+      device = "/dev/disk/by-id/nvme-WDC_WDS500G2B0C-00PXH0_2033B6800563";
+      # the stupid labels keep swapping on me, and I accidentally reformatted
+      # my entire computer. If you accidentally do this, DO NOTHING! DON'T
+      # WRITE ANYTHING TO THE DISK! Reboot into a recovery flash drive, and run
+      # testdisk --> quick scan. That's what saved me. Search for more
+      # documentation on your phone if you need. So, I chose disk/by-id instead.
       content = {
         type = "gpt";
         partitions = {
           ESP = {
             priority = 1;
-            label = "EFI-nixos";
+            label = "EFI-NIXOS";
             name = "ESP";
             size = "512M";
             type = "EF00";
@@ -16,7 +21,7 @@
               type = "filesystem";
               format = "vfat";
               mountpoint = "/efi";
-              extraArgs = ["-n" "EFI-nixos"];
+              extraArgs = ["-n" "EFI-NIXOS"];
               mountOptions = ["umask=0077"];
             };
           };
@@ -26,12 +31,9 @@
               type = "btrfs";
               extraArgs = ["-L" "nixos" "-f"];
               subvolumes = {
-                "@root" = {
+                "@" = {
                   mountpoint = "/";
-                  mountOptions = ["subvol=@root" "compress=zstd" "noatime" "autodefrag"];
-                };
-                "@root-blank" = {
-                  mountOptions = ["subvol=@root-blank" "nodatacow" "noatime" "autodefrag"];
+                  mountOptions = ["subvol=@" "compress=zstd" "noatime" "autodefrag"];
                 };
                 "@home" = {
                   mountpoint = "/home";
