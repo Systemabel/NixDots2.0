@@ -12,22 +12,30 @@
     brightnessctl
     btop
     cava
+    clipvault
     ddcutil
+    direnv
     eza # replace "ls" with an alias
     firefox # calls for zen, which is, to my surprise, unavailable onthe nix store as of now...
     fastfetch
+    gammastep
     git
     htop
     hypridle # c++
     hyprlock # c++
+    kde-gruvbox
     kdePackages.dolphin
     kdePackages.kate
+    kdePackages.koi # light/dark themes?
+    kdePackages.koko # image viewer
     kdePackages.polkit-kde-agent-1
+    kdePackages.systemsettings
     keepassxc
     kitty
     nix-tree
     mesa
     mpvpaper # c
+    niriswitcher
     quickshell # C++
     raffi # fuzzel replacement written in rust
     rink # calculator
@@ -35,14 +43,17 @@
     # servo # rust browser - try it out?
     spicetify-cli
     spotify
+    steam
     swww # rust
     tealdeer
     translate-shell
     trash-cli
     tree
+    via
     vscodium
     waytrogen # replacing waypaper: also try hyprwall
-    wl-clipboard-rs
+    wl-clipboard
+    xwayland-satellite
 
     # adw-gtk-theme
     # alvr

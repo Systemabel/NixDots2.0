@@ -14,10 +14,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # niri = {
-    # url = "github:sodiboo/niri-flake";
-    # inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # quickshell = {
     # url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
@@ -56,15 +56,23 @@
           ./hosts/Finn
           inputs.disko.nixosModules.disko
           inputs.impermanence.nixosModules.impermanence
+          inputs.home-manager.nixosModules.home-manager
+          inputs.niri.nixosModules.niri
+          {
+            home-manager.users.orca = {
+              imports = [./home/orca/Finn.nix];
+            };
+            home-manager.extraSpecialArgs = {inherit inputs outputs;};
+          }
         ];
       };
     };
-    homeConfigurations = {
-      "orca@Finn" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [./home/orca/Finn.nix];
-      };
-    };
+    # homeConfigurations = {
+    #  "orca@Finn" = home-manager.lib.homeManagerConfiguration {
+    #   pkgs = nixpkgs.legacyPackages."x86_64-linux";
+    #  extraSpecialArgs = {inherit inputs outputs;};
+    # modules = [./home/orca/Finn.nix];
+    #};
+    # };
   };
 }

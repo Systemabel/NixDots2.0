@@ -25,6 +25,7 @@
         q = "exit";
         rm = "rm -vr";
         code = "codium";
+        nreb = "nixos-rebuild switch --flake";
       };
     };
     nh = {

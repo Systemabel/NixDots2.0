@@ -1,3 +1,4 @@
+# hosts/common/default.nix
 # Common configuration for all hosts
 {
   lib,
@@ -14,7 +15,9 @@
   ];
   home-manager = {
     useUserPackages = true;
+    # useGlobalPkgs = true;
     extraSpecialArgs = {inherit inputs outputs;};
+    # sharedModules = [{nixpkgs.config = lib.mkForce {};}];
   };
   nixpkgs = {
     # You can add overlays here

@@ -7,8 +7,10 @@
   imports = [
     ./anyrun.nix
     ./keepassxc.nix
+    ./desktop-entries.nix
+    ./niri
+    ./xdg.nix
   ];
-
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -40,9 +42,5 @@
       experimental-features = ["nix-command" "flakes"];
       warn-dirty = false;
     };
-  };
-  # Optional: autostart programs.
-  xdg.autostart = {
-    enable = true;
   };
 }

@@ -6,6 +6,9 @@
   lib,
   ...
 }: {
+  nixpkgs.config = lib.mkForce {};
+  nixpkgs.overlays = lib.mkForce [];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = lib.mkDefault "orca";

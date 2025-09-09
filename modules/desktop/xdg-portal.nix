@@ -12,6 +12,7 @@
       enable = true;
     };
     xdgOpenUsePortal = true;
+    # https://discourse.nixos.org/t/how-to-remove-xdg-desktop-portal-gtk-where-does-it-come-from-and-why/62958
     extraPortals = pkgs.lib.mkForce [
       pkgs.kdePackages.xdg-desktop-portal-kde
     ];

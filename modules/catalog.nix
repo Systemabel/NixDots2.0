@@ -17,6 +17,7 @@
     ];
     dev = with pkgs; [
       alejandra
+      direnv
       git
       vscodium
     ];
@@ -31,8 +32,15 @@
       servo
       spotify
       vscodium
+      kdePackages.systemsettings
+      steam
       waytrogen
       keepassxc
+    ];
+    theming = with pkgs; [
+      kde-gruvbox
+      kdePackages.koi
+      kdePackages.koko
     ];
     fonts = with pkgs; [
       inter-nerdfont
@@ -46,22 +54,27 @@
       brightnessctl
       btop
       cava
+      clipvault
       ddcutil
       fastfetch
+      gammastep
       htop
       hypridlehyprlock
       mpvpaper
+      niriswitcher
       raffi
       spicetify-cli
       translate-shell
       swww
-      wl-clipboard-rs
+      via
+      wl-clipboard
     ];
     core = with pkgs; [
       kdePackages.polkit-kde-agent-1
       mesa
       niri # rust
       quickshell # c++
+      xwayland-satellite
     ];
   };
 
@@ -72,25 +85,33 @@
     brightnessctl = pkgs.brightnessctl;
     btop = pkgs.btop;
     cava = pkgs.cava;
+    clipvault = pkgs.clipvault;
     ddcutil = pkgs.ddcutil;
+    direnv = pkgs.direnv;
     eza = pkgs.eza;
     firefox = pkgs.firefox;
     bat = pkgs.bat;
     fastfetch = pkgs.fastfetch;
+    gammastep = pkgs.gammastep;
     git = pkgs.git;
     ghostty = pkgs.ghostty;
     htop = pkgs.htop;
     hypridle = pkgs.hypridle;
     hyprlock = pkgs.hyprlock;
     inter-nerdfont = pkgs.inter-nerdfont;
+    kde-gruvbox = pkgs.kde-gruvbox;
     kdePackages.dolphin = pkgs.kdePackages.dolphin;
     kdePackages.polkit-kde-agent-1 = pkgs.kdePackages.polkit-kde-agent-1;
+    kdePackages.koi = pkgs.kdePackages.koi;
+    kdePackages.koko = pkgs.kdePackages.koko;
+    kdePackages.systemsettings = pkgs.kdePackages.systemsettings;
     keepass = pkgs.keepassxc;
     kitty = pkgs.kitty;
     material-symbols = pkgs.material-symbols;
     mesa = pkgs.mesa;
     mpvpaper = pkgs.mpvpaper;
     nerd-fonts.ttf-jetbrains-mono-nerd = pkgs.nerdfonts.ttf-jetbrains-mono-nerd;
+    niriswitcher = pkgs.niriswitcher;
     nix-tree = pkgs.nix-tree;
     quickshell = pkgs.quickshell;
     roboto = pkgs.roboto;
@@ -101,14 +122,17 @@
     servo = pkgs.servo;
     spicetify-cli = pkgs.spicetify-cli;
     spotify = pkgs.spotify;
+    steam = pkgs.steam;
     swww = pkgs.swww;
     tealdeer = pkgs.tealdeer;
     translate-shell = pkgs.translate-shell;
     trash-cli = pkgs.trash-cli;
     tree = pkgs.tree;
+    via = pkgs.via;
     vscodium = pkgs.vscodium;
     waytrogen = pkgs.waytrogen;
     wl-clipboard = pkgs.wl-clipboard;
+    xwayland-satellite = pkgs.xwayland-satellite;
   };
 
   systemPackages =
