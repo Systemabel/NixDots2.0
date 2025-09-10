@@ -1,8 +1,9 @@
 {...}: {
   programs.niri.settings.spawn-at-startup = [
     {sh = "qs -c $qsConfig &";}
-    {argv = "lact";}
+    {sh = "lact";}
     {sh = "bash -c wl-paste --watch clipvault store &";}
-    {argv = "niriswitcher";}
+    {sh = "niriswitcher";}
+    {sh = "sunsetr";}
   ];
 }

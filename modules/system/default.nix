@@ -7,5 +7,6 @@
     ./impermanence.nix
     ./networking.nix
     ./zram.nix
+    ./env.nix
   ];
 }

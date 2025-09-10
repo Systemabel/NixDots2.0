@@ -1,6 +1,6 @@
 {...}: {
   imports = [
     ./security.nix
-    ./clipvault.nix
+    ./clipboard.nix
   ];
 }

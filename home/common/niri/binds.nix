@@ -192,20 +192,20 @@
 
     # Audio/Media controls
     "XF86AudioRaiseVolume" = {
-      action = sh "spctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+";
+      action = sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+";
       allow-when-locked = true;
     };
     "XF86AudioLowerVolume" = {
-      action = sh "spctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-";
+      action = sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-";
       allow-when-locked = true;
     };
     "XF86AudioMute" = {
-      action = sh "spctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+      action = sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
       allow-when-locked = true;
     };
     # # ** I don't have a mute button on my keyboard, and I use an external audio interface anyway...
     # "XF86AudioMute" = {
-    #   action = sh "spctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+    #   action = sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
     #   allow-when-locked = true;
     # };
     "XF86AudioPlay" = {

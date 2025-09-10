@@ -19,6 +19,7 @@
       alejandra
       direnv
       git
+      nixd
       vscodium
     ];
     terminal = with pkgs; [
@@ -57,13 +58,14 @@
       clipvault
       ddcutil
       fastfetch
-      gammastep
       htop
       hypridlehyprlock
       mpvpaper
       niriswitcher
+      playerctl
       raffi
       spicetify-cli
+      sunsetr
       translate-shell
       swww
       via
@@ -92,7 +94,6 @@
     firefox = pkgs.firefox;
     bat = pkgs.bat;
     fastfetch = pkgs.fastfetch;
-    gammastep = pkgs.gammastep;
     git = pkgs.git;
     ghostty = pkgs.ghostty;
     htop = pkgs.htop;
@@ -113,9 +114,11 @@
     nerd-fonts.ttf-jetbrains-mono-nerd = pkgs.nerdfonts.ttf-jetbrains-mono-nerd;
     niriswitcher = pkgs.niriswitcher;
     nix-tree = pkgs.nix-tree;
+    nixd = pkgs.nixd;
     quickshell = pkgs.quickshell;
     roboto = pkgs.roboto;
     papirus-icon-theme = pkgs.papirus-icon-theme;
+    playerctl = pkgs.playerctl;
     raffi = pkgs.raffi;
     rink = pkgs.rink;
     ripgrep = pkgs.ripgrep;
@@ -123,6 +126,7 @@
     spicetify-cli = pkgs.spicetify-cli;
     spotify = pkgs.spotify;
     steam = pkgs.steam;
+    sunsetr = pkgs.sunsetr;
     swww = pkgs.swww;
     tealdeer = pkgs.tealdeer;
     translate-shell = pkgs.translate-shell;

@@ -1,17 +1,21 @@
 {
   pkgs,
-  inputs,
   config,
   ...
 }: {
-  # Change me to whatever you like:
+  # Change "orca" to a unique username-- dont use something generic like "user".
+  # because that just makes things more ambiguous, obviously.
   users.groups.orca = {};
   users.users.orca = {
     isNormalUser = true;
     # Change me!
+    name = "orca";
+    home = "/home/${config.users.users.orca.name}";
     description = "orca";
     # Change me! generate with `mkpasswd -m SHA-512 -s`
     # initialHashedPassword = "$6$9I35TBWjqxI.jPEm$fX37utl6dDHFMd0V5l5ZmwVcuOGFdaKWkngIZCv.ML8GFxOg5dhxvpIeHLc6TxGYW6paw5b3Nx5ujls/ChWXC.";
+
+    # "your-user"
     group = "orca";
     extraGroups = [
       "networkmanager"
@@ -24,12 +28,10 @@
       "scanner"
       "lp"
       "root"
-      # "your-user"
       "sudo"
     ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
-    packages = [inputs.home-manager.packages.${pkgs.system}.default];
   };
   nix = {
     settings = {

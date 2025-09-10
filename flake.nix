@@ -59,10 +59,10 @@
           inputs.home-manager.nixosModules.home-manager
           inputs.niri.nixosModules.niri
           {
-            home-manager.users.orca = {
-              imports = [./home/orca/Finn.nix];
+            home-manager = {
+              users.orca.imports = [./home/orca/Finn.nix];
+              extraSpecialArgs = {inherit inputs outputs;};
             };
-            home-manager.extraSpecialArgs = {inherit inputs outputs;};
           }
         ];
       };

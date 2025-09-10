@@ -7,7 +7,7 @@
     # organized.
 
     alejandra
-    anyrun # rust
+    anyrun # Preferred for it's features
     bat
     brightnessctl
     btop
@@ -16,9 +16,8 @@
     ddcutil
     direnv
     eza # replace "ls" with an alias
-    firefox # calls for zen, which is, to my surprise, unavailable onthe nix store as of now...
+    firefox # calls for zen, which is, to my surprise, unavailable on the nix store as of now...
     fastfetch
-    gammastep
     git
     htop
     hypridle # c++
@@ -32,18 +31,20 @@
     kdePackages.systemsettings
     keepassxc
     kitty
+    nixd
     nix-tree
     mesa
     mpvpaper # c
     niriswitcher
     quickshell # C++
-    raffi # fuzzel replacement written in rust
+    # raffi # fuzzel replacement written in rust
     rink # calculator
     ripgrep # search tool in cli
-    # servo # rust browser - try it out?
+    # servo # rust browser - try it out? -update: won't build...
     spicetify-cli
     spotify
     steam
+    sunsetr
     swww # rust
     tealdeer
     translate-shell
