@@ -4,10 +4,34 @@
   ...
 }: {
   boot = {
-    # LinuxZen Kernel NO! Latest :)
-    kernelPackages = pkgs.linuxPackages_latest;
-    consoleLogLevel = 3;
+    kernelPackages = pkgs.linuxPackages_cachyos-lto;
+
+    # Enable "Silent Boot"
+    consoleLogLevel = 0;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "loglevel=3"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
+    ];
+    # Hide the OS choice for bootloaders.
+    # It's still possible to open the bootloader list by pressing any key
+    # It will just not appear on screen unless a key is pressed
+    # loader.timeout = 0;
+
+    # consoleLogLevel = 3;
     # /tmp in RAM wiped on reboot
+    # kernelParams = [
+    #   "quiet"
+    #   "systemd.show_status=auto"
+    #   "rd.udev.log_level=3"
+    #   "plymouth.use-simpledrm"
+    # ];
+
     tmp = {
       useTmpfs = true;
       tmpfsSize = "50%";
@@ -17,12 +41,7 @@
       options iwlmvm  power_scheme=1
       options iwlwifi power_save=0
     '';
-    kernelParams = [
-      "quiet"
-      "systemd.show_status=auto"
-      "rd.udev.log_level=3"
-      "plymouth.use-simpledrm"
-    ];
+
     kernel.sysctl = {
       "vm.max_map_count" = 2147483642;
     };
@@ -33,7 +52,7 @@
       };
       systemd-boot = {
         enable = true;
-        configurationLimit = 20;
+        configurationLimit = 10;
         consoleMode = lib.mkDefault "max";
       };
     };
@@ -46,22 +65,5 @@
         })
       ];
     };
-    # Enable "Silent Boot"
-    # consoleLogLevel = 0;
-    # initrd.verbose = false;
-    # kernelParams = [
-    #   "quiet"
-    #   "splash"
-    #   "boot.shell_on_fail"
-    #   "loglevel=3"
-    #   "rd.systemd.show_status=false"
-    #   "rd.udev.log_level=3"
-    #   "udev.log_priority=3"
-    # ];
-    # Hide the OS choice for bootloaders.
-    # It's still possible to open the bootloader list by pressing any key
-    # It will just not appear on screen unless a key is pressed
-    # loader.timeout = 0;
   };
-  # environment.systemPackages = with pkgs; [greetd.tuigreet];
 }

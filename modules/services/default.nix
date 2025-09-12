@@ -1,6 +1,10 @@
 {...}: {
   imports = [
+    # ./encryption.nix
+    ./hypridle.nix
+    # ./llama.nix
     ./security.nix
-    ./clipboard.nix
+    ./swapfile.nix
+    ./ttyNumpad.nix
   ];
 }

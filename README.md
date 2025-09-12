@@ -1,6 +1,6 @@
 # NixDots2.0
 
-# STATUS
+## STATUS
 
 Working:
 
@@ -32,12 +32,12 @@ Not working:
 - [DankMaterialShell](https://github.com/AvengeMedia/DankMaterialShell)
 - [kagurazakei's "Shizuru" flake](https://github.com/kagurazakei/Shizuru/tree/main)
 - [Ly-sec's nix dots](https://github.com/Ly-sec/nixos) (old commits? as seen
-  [here](https://www.reddit.com/r/unixporn/comments/1lmxjlx/niri_quickshell))
+  [in this reddit post](https://www.reddit.com/r/unixporn/comments/1lmxjlx/niri_quickshell))
   who found inspo from
   - [Rexcrazy804's dots](https://github.com/Rexcrazy804/Zaphkiel)
   - [Noctalia's shell](https://github.com/noctalia-dev/noctalia-shell)
 
-#### _Lots of different flakes and styles to build off of!_
+### _Lots of different flakes and styles to build off of!_
 
 ---
 
@@ -74,13 +74,13 @@ alternative that's receiving regular development. It's a preference.
 
 ### Design choices
 
-`anyrun` : ([link](https://github.com/anyrun-org/anyrun)) Runs nice. Does nice
+`anyrun` : ([gh](https://github.com/anyrun-org/anyrun)) Runs nice. Does nice
 things. Written in rust.
 
-`clipvault` : ([link](https://github.com/Rolv-Apneseth/clipvault)) Inspired by
+`clipvault` : ([gh](https://github.com/Rolv-Apneseth/clipvault)) Inspired by
 cliphist, added features, written in rust.
 
-`keepassxc` : ([link](https://github.com/keepassxreboot/keepassxc)) I've seen
+`keepassxc` : ([gh](https://github.com/keepassxreboot/keepassxc)) I've seen
 some rumors about security implementation issues with gnome-keyring.
 Kde/plasma's keyring is flawed from a security standpoint, and I don't believe
 it can function as a secret service provider --> keepassxc does.
@@ -89,7 +89,7 @@ it can function as a secret service provider --> keepassxc does.
 > automatically unlocking the keyring at login effectively makes the keyring
 > useless (right?).
 
-`sunsetr` : ([link](https://github.com/psi4j/sunsetr)) It just works, it's rust,
+`sunsetr` : ([gh](https://github.com/psi4j/sunsetr)) It just works, it's rust,
 and it's been super helpful in early-setup. Thank you **psi4** for your
 contribution.
 
@@ -104,12 +104,13 @@ I also just like dolphin more than nautilus.
 - [x] core system functionality
 - [x] get Niri working
 - [x] de-gnomify desktop environment
-- [ ] custom kernel patches ([tkg?](https://github.com/Frogging-Family/linux-tkg))
-- [ ] escape home manager
+- [x] custom kernel patches (settled with cachyos-kernel-lto from chaotic)
+- [x] escape home manager
 - [ ] set up encryption (and decryption options)
-- [ ] shell [quickshell](https://github.com/quickshell-mirror/quickshell)
+- [ ] shell: [quickshell](https://github.com/quickshell-mirror/quickshell)
 - [ ] dynamic color theming
 - [ ] incorporate local ai tools
 - [ ] create cohesion of all the parts!
+- [ ] get more sleep...
 
-# Stay tuned...
+## Stay tuned...

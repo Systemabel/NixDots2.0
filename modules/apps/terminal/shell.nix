@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   programs = {
     bash = {
       enable = true;
@@ -11,11 +11,12 @@
       enableCompletion = true;
       histSize = 100000;
       shellAliases = {
+        c = "clear";
         ls = "eza --icons";
         l = "ls -l";
         la = "ls -a";
         lla = "ls -la";
-        lt = "exa --tree";
+        lt = "eza --tree";
         lti = "ls --tree";
         cat = "bat --color always";
         # cleanram = "sudo sh -c '\''sync; echo 3 > /proc/sys/vm/drop_caches'\";
@@ -25,22 +26,12 @@
         q = "exit";
         rm = "rm -vr";
         code = "codium";
-        nreb = "nixos-rebuild switch --flake";
+        nreb = "sudo nixos-rebuild switch --flake";
+        fzf = "skim";
       };
-    };
-    nh = {
-      enable = true;
-      clean.enable = true;
-      clean.extraArgs = "--keep-since 4d --keep 3";
-      # flake = "/home/${}/flake";
     };
     starship = {
       enable = true;
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    ghostty
-    kitty
-  ];
 }

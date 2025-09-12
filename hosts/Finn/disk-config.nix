@@ -58,7 +58,7 @@
                 "@swap" = {
                   mountpoint = "/persist/swap";
                   mountOptions = ["subvol=@swap" "noatime"];
-                  swap.swapfile.size = "18G";
+                  swap.swapfile.size = "20G";
                 };
                 "@snapshots" = {
                   mountpoint = "/.snapshots";

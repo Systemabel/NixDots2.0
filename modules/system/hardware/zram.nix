@@ -8,7 +8,6 @@ in {
   options.custom.zram = {
     enable = lib.mkEnableOption "Enable utils module";
   };
-
   config = lib.mkIf cfg.enable {
     zramSwap = {
       enable = true;

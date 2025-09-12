@@ -1,9 +1,9 @@
 {...}: {
   imports = [
-    ./system
-    ./services
+    ./apps
     ./desktop
-    ./appBucket.nix
-    ./pleasepleasedark.nix
+    ./services
+    ./system
+    ./pkgs-masterlist.nix
   ];
 }

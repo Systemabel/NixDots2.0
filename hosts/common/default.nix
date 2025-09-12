@@ -4,21 +4,13 @@
   lib,
   inputs,
   outputs,
-  pkgs,
   ...
 }: {
   systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
   imports = [
     ../../modules
     ./users
-    # inputs.home-manager.nixosModules.home-manager
   ];
-  home-manager = {
-    useUserPackages = false;
-    # useGlobalPkgs = true;
-    extraSpecialArgs = {inherit inputs outputs;};
-    # sharedModules = [{nixpkgs.config = lib.mkForce {};}];
-  };
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -37,9 +29,7 @@
       #   });
       # })
     ];
-    # Configure your nixpkgs instance
     config = {
-      # Disable if you don't want unfree packages
       allowUnfree = true;
     };
   };
@@ -51,21 +41,10 @@
       options = "--delete-older-than 30d";
     };
     optimise.automatic = true;
+    # I got tired of warnings about /etc/nix path var so,
+    channel.enable = false;
     registry =
       (lib.mapAttrs (_: flake: {inherit flake;}))
       ((lib.filterAttrs (_: lib.isType "flake")) inputs);
-    nixPath = ["/etc/nix/path"];
-  };
-
-  # You need this (below) to have numpad enabled in ttyz
-  systemd.services.numLockOnTty = {
-    wantedBy = ["multi-user.target"];
-    serviceConfig = {
-      ExecStart = lib.mkForce (pkgs.writeShellScript "numLockOnTty" ''
-        for tty in /dev/tty{1..6}; do
-          ${pkgs.kbd}/bin/setleds -D +num < "$tty";
-        done
-      '');
-    };
   };
 }

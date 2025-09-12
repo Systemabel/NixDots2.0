@@ -1,10 +1,9 @@
 {...}: {
   imports = [
-    ./cli.nix
+    ./compositor
+    ./themes
     ./display-manager.nix
-    ./fonts-themes.nix
-    ./niri.nix
-    ./xdg-portal.nix
+    ./portal.nix
     # ./quickshell.nix
   ];
 }

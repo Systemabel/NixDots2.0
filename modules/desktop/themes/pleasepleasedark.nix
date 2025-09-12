@@ -1,9 +1,5 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
+  # TODO: integrate this into overall structure
   # Global dark theme configuration
   environment.sessionVariables = {
     # Qt theming
@@ -16,21 +12,6 @@
     # Additional theming hints
     GTK2_RC_FILES = "${pkgs.gnome-themes-extra}/share/themes/Adwaita-dark/gtk-2.0/gtkrc";
   };
-
-  # Install necessary theme packages
-  environment.systemPackages = with pkgs; [
-    # GTK themes
-    adwaita-icon-theme
-    gnome-themes-extra
-
-    # Qt/KDE themes
-    kdePackages.breeze
-    kdePackages.breeze-icons
-    kdePackages.breeze-gtk
-
-    # Additional Qt styling
-    libsForQt5.qtstyleplugins
-  ];
 
   # Qt configuration
   qt = {

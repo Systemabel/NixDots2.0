@@ -42,4 +42,35 @@
       ]; # Set users that are allowed to use the flake command
     };
   };
+  imports = [./orca];
+  fileSystems."/home/orca/archroot" = {
+    device = "cad53379-89a4-4110-b033-c6686ca0274d";
+    fsType = "btrfs";
+    options = [
+      "subvol=@"
+      "natime"
+      "compress=zstd"
+      "autodefrag"
+    ];
+  };
+  fileSystems."/home/orca/myliege" = {
+    device = "2e8b0fa2-be26-45dc-a19a-9bcfec2efd7f";
+    fsType = "btrfs";
+    options = [
+      "subvol=@home"
+      "natime"
+      "compress=zstd"
+      "autodefrag"
+    ];
+  };
+  fileSystems."/home/orca/Games" = {
+    device = "2e8b0fa2-be26-45dc-a19a-9bcfec2efd7f";
+    fsType = "btrfs";
+    options = [
+      "subvol=@games"
+      "natime"
+      "compress=zstd"
+      "autodefrag"
+    ];
+  };
 }
