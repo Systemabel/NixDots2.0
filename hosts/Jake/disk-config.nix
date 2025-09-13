@@ -58,7 +58,6 @@
                 "@swap" = {
                   mountpoint = "/persist/swap";
                   mountOptions = ["noatime" "x-systemd.requires-mounts-for=/persist"];
-                  swap.swapfile.size = "20G";
                 };
                 "@snapshots" = {
                   mountpoint = "/.snapshots";

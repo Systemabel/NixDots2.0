@@ -1,1 +1,1 @@
-{...}: {imports = [./systemid-for-proprietary-licenses.nix ./common-apps.nix];}
+{...}: {imports = [./systemID-for-proprietary-licenses.nix ./common-apps.nix];}

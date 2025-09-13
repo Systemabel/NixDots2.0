@@ -7,7 +7,7 @@
   # boot.initrd.postResumeCommands = lib.mkAfter ''
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     mkdir /btrfs_tmp
-    mount -t btrfs -o subvol=5 ${config.fileSystems."/".device} /btrfs_tmp
+    mount -t btrfs -o subvol=5 /dev/disk/by-partlabel/disk-main-root /btrfs_tmp
     if [[ -e /btrfs_tmp/@ ]]; then
       mkdir -p /btrfs_tmp/old_roots
       timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/@)" "+%Y-%m-%-d_%H:%M:%S")
