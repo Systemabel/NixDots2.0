@@ -7,12 +7,20 @@ with pkgs; {
       ddcutil
       mesa
       vulkan-tools
+      qmk
       # note: services.nact.enable = true --> in config
     ];
     security = [
       keepassxc
       kdePackages.polkit-kde-agent-1
     ];
+    system-cli-tools = [
+      (lib.hiPrio pkgs.uutils-coreutils-noprefix) #lib.hiPrio is used to avoid potential conflict with 'coreutils-full'
+      uutils-findutils
+      uutils-diffutils
+      usbutils
+    ];
+
     # ---
     compositor = [
       # niri-unstable is called in services.displayManager.sessionPackages
@@ -23,39 +31,58 @@ with pkgs; {
       cava
       clipvault
       fuzzel
-      hyprlock
+      gpu-screen-recorder
       hypridle
+      hyprlock
+      khal
+      libnotify
+      mako
       mpvpaper
-      numlockx
+      niriswitcher
       playerctl
       quickshell
-      raffi
       rink
       sunsetr
       swww
       waytrogen
-      mako
     ];
-    portal = [
-      # kdePackages.bluedevil
-      kdePackages.dolphin
-      kdePackages.kate
-      kdePackages.systemsettings
-      # kdePackages.kde-cli-tools
-      # kdePackages.kded
-      # kdePackages.kdialog
-      kdePackages.koko
-      # kdePackages.plasma-workspace
+    kde = with kdePackages; [
+      breeze
+      breeze-icons
+      breeze-gtk
+      dolphin
+      dolphin-plugins
+      ffmpegthumbs
+      frameworkintegration
+      kate
+      kde-cli-tools
+      kde-gtk-config
+      kded
+      kdialog
+      kio
+      kio-admin
+      kio-extras
+      kio-fuse
+      klevernotes
+      kmime
+      koko
+      kservice
+      kxmlgui
+      partitionmanager
+      plasma-integration
+      plasma-workspace
+      qt6ct
+      qt6gtk2
+      qtbase
+      qtmultimedia
     ];
     dynamicTheming = [
       spicetify-cli
       adwaita-icon-theme
       gnome-themes-extra
       kde-gruvbox
-      kdePackages.breeze
-      kdePackages.breeze-icons
-      kdePackages.breeze-gtk
       libsForQt5.qtstyleplugins
+      matugen
     ];
     fonts = [
       inter-nerdfont
@@ -64,6 +91,7 @@ with pkgs; {
       roboto
       papirus-icon-theme
     ];
+
     # ---
     userApps = [
       # TODO servo # this one is pretty broken as of right now... won't build for some reason.
@@ -93,21 +121,20 @@ with pkgs; {
     ];
     cli = [
       bat
+      btop
       curl
       eza
+      fastfetch
+      htop
       jq
+      nix-index
+      nix-tree
       ripgrep
       skim
-      nix-tree
       tealdeer
-      tweego
       translate-shell
       trash-cli
       wl-clipboard
-      btop
-      fastfetch
-      htop
-      # nh is also enabled but at a different location
     ];
     terminal = [
       ghostty
@@ -115,8 +142,8 @@ with pkgs; {
       starship
     ];
 
-    core = hardware ++ security;
-    desktop = compositor ++ guiShell ++ portal ++ dynamicTheming ++ fonts;
+    core = hardware ++ security ++ system-cli-tools;
+    desktop = compositor ++ guiShell ++ kde ++ dynamicTheming ++ fonts;
     applications = userApps ++ devTools ++ gaming ++ cli ++ terminal;
   in
     core ++ desktop ++ applications;

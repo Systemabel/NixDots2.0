@@ -52,7 +52,7 @@
       };
       systemd-boot = {
         enable = true;
-        configurationLimit = 15;
+        configurationLimit = 30;
         consoleMode = lib.mkDefault "max";
       };
     };

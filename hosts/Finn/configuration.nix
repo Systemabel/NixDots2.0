@@ -6,8 +6,6 @@
   # [ ] Custom Options
   custom = {
     zram.enable = true;
-    # swapfile.enable = true; # "Download more ram here"
-    # swapfile.size = 20; # in GB
     # encryptedSetup = false;
     # enableLocalAI = false;
     # # accessibility options include:

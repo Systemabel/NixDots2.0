@@ -6,4 +6,5 @@
     # network = {}; # config network service (/etc/bluetooth/network.conf). See https://github.com/bluez/bluez/blob/master/profiles/network/network.conf
     # settings = {}; # config system-wide bluetooth (/etc/bluetooth/main.conf). See https://github.com/bluez/bluez/blob/master/src/main.conf
   };
+  services.blueman.enable = true;
 }

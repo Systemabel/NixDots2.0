@@ -1,19 +1,9 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{...}: {
   # environment.systemPackages = with pkgs; [];
   # TODO get this themed
   # TODO allow numlock, please
   services.greetd = {
     enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.numlockx}/bin/numlockx on && ${pkgs.regreet}/bin/regreet";
-        user = "greeter";
-      };
-    };
   };
   programs.regreet = {
     # any of theme, font, iconTheme or cursorTheme will also accept a package =   argument.

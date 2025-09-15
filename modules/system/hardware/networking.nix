@@ -1,7 +1,7 @@
 {...}: {
   networking = {
     networkmanager.enable = true;
-    enableIPv6 = true;
+    # enableIPv6 = true;
   };
   services.openssh = {
     enable = true;

@@ -4,6 +4,7 @@
     ./bluetooth.nix
     ./display.nix
     ./networking.nix
+    ./power.nix
     ./zram.nix
   ];
 }

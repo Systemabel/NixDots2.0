@@ -9,7 +9,14 @@
     zsh = {
       enable = true;
       enableCompletion = true;
+      autosuggestions.enable = true;
+      autosuggestions.strategy = ["history"];
+      enableBashCompletion = true;
+      enableLsColors = true;
       histSize = 100000;
+      histFile = "$HOME/.zsh_history";
+      setOptions = [
+      ];
       shellAliases = {
         c = "clear";
         ls = "eza --icons";
@@ -18,7 +25,7 @@
         lla = "ls -la";
         lt = "eza --tree";
         lti = "ls --tree";
-        cat = "bat --color always";
+        cat = "bat --plain";
         # cleanram = "sudo sh -c '\''sync; echo 3 > /proc/sys/vm/drop_caches'\";
         cp = "cp -vr";
         mkdir = "mkdir -p";
@@ -27,7 +34,7 @@
         rm = "rm -vr";
         code = "codium";
         nreb = "sudo nixos-rebuild switch --flake";
-        fzf = "skim";
+        fzf = "sk";
       };
     };
     starship = {

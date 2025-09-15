@@ -1,10 +1,10 @@
-{lib, ...}: {
+{...}: {
   security = {
     polkit.enable = true;
-    pam.services.greetd.enableGnomeKeyring = lib.mkForce false;
+    # pam.services.greetd.enableGnomeKeyring = lib.mkForce false;
   };
   services = {
-    gnome.gnome-keyring.enable = lib.mkForce false;
+    # gnome.gnome-keyring.enable = lib.mkForce false;
     # passSecretService.enable = true;
   };
   # systemd.user.services."keepassxc" = {
