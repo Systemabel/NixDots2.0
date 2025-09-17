@@ -1,8 +1,10 @@
 # terminal
 {...}: {
   imports = [
+    ./aliases.nix
     ./cli.nix
     # ./emulator.nix
-    ./shell.nix
+    ./shell-prefs.nix
+    ./starship.nix
   ];
 }
