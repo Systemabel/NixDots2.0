@@ -18,17 +18,14 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nur.url = "github:nix-community/NUR";
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # xdp-termfilepickers.url = "github:Guekka/xdg-desktop-portal-termfilepickers";
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
 
   outputs = {
     nixpkgs,
     self,
     chaotic,
+    spicetify-nix,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -52,7 +49,7 @@
           inputs.impermanence.nixosModules.impermanence
           inputs.niri-git.nixosModules.niri
           chaotic.nixosModules.default
-          # inputs.xdp-termfilepickers.nixosModules.default
+          spicetify-nix.nixosModules.default
         ];
       };
     };

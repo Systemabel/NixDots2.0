@@ -10,6 +10,9 @@
     zsh = {
       enable = lib.mkDefault true;
       vteIntegration = true;
+      interactiveShellInit = ''
+        eval "$(starship init zsh)"
+      '';
       # History
       histSize = 100000;
       # Syntax Highlighting

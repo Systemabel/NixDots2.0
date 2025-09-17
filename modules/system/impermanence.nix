@@ -78,6 +78,7 @@
           ".config/television"
           ".config/VSCodium"
           ".config/xdg-desktop-portal-termfilechooser"
+          ".config/yazi"
           ".git"
           ".local/share/color-schemes"
           ".local/share/dbus-1"
@@ -92,8 +93,8 @@
           ".ssh"
           ".vscode-oss"
           "Documents"
-          "Pictures/Wallpapers"
           "flake"
+          "Pictures/Wallpapers"
         ];
         files = [
           ".config/dolphinrc"
@@ -101,6 +102,7 @@
           ".config/kiorc"
           ".config/KleverNotesrc"
           ".config/Preferences"
+          ".config/starship.toml"
           ".local/share/clipvault.db"
           ".local/share/recently-used.xbel"
           ".local/share/user-places.xbel"

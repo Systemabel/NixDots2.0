@@ -2,7 +2,7 @@
 {...}: {
   imports = [
     ./aliases.nix
-    ./cli.nix
+    ./cli-tools.nix
     # ./emulator.nix
     ./shell-prefs.nix
     ./starship.nix

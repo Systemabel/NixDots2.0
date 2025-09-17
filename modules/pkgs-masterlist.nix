@@ -84,13 +84,6 @@ with pkgs; {
       libsForQt5.qtstyleplugins
       matugen
     ];
-    fonts = [
-      inter-nerdfont
-      material-symbols
-      nerd-fonts.jetbrains-mono
-      roboto
-      papirus-icon-theme
-    ];
 
     # ---
     userApps = [
@@ -102,7 +95,6 @@ with pkgs; {
       kodiPackages.netflix
       kodiPackages.steam-library
       kodiPackages.steam-launcher
-      spotify
     ];
     devTools = [
       vscodium
@@ -148,7 +140,7 @@ with pkgs; {
     ];
 
     core = hardware ++ security ++ system-cli-tools;
-    desktop = compositor ++ guiShell ++ kde ++ dynamicTheming ++ fonts;
+    desktop = compositor ++ guiShell ++ kde ++ dynamicTheming;
     applications = userApps ++ devTools ++ flake-building-utils ++ gaming ++ cli ++ terminal;
   in
     core ++ desktop ++ applications;
