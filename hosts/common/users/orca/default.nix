@@ -1,1 +1,6 @@
-{...}: {imports = [./common-apps.nix];}
+{...}: {
+  imports = [
+    ./common-apps.nix
+    ./preferred-defaults.nix
+  ];
+}

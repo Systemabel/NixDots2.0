@@ -10,9 +10,22 @@
 in {
   programs.spicetify = {
     enable = lib.mkDefault true;
-    theme = lib.mkForce spicePkgs.themes.hazy;
+    theme = {
+      name = "Hazy";
+      src = pkgs.fetchFromGitHub {
+        owner = "Astromations";
+        repo = "Hazy";
+        rev = "main";
+        hash = "sha256-pbl+b71IAObgZk8gVzYoPVaHkHRk4wL+fut6kJEzEOo=";
+      };
 
-    # colorScheme = "custom";
+      injectCss = true;
+      injectThemeJs = true;
+      # replaceColors = true;
+      overwriteAssets = true;
+    };
+
+    colorScheme = "Base";
 
     # customColorScheme = {
     # button = accent;
