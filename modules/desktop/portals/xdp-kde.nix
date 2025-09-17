@@ -2,12 +2,9 @@
   # programs.dconf.enable = true;
   xdg = {
     portal = {
-      enable = true;
-      xdgOpenUsePortal = true;
-      #   # https://discourse.nixos.org/t/how-to-remove-xdg-desktop-portal-gtk-where-does-it-come-from-and-why/62958
+      # https://discourse.nixos.org/t/how-to-remove-xdg-desktop-portal-gtk-where-does-it-come-from-and-why/62958
       extraPortals = with pkgs; [
         kdePackages.xdg-desktop-portal-kde
-        xdg-desktop-portal-wlr
         # this apparently conflicts with wlr.enable = true
       ];
       #   wlr.enable = true;
@@ -17,11 +14,6 @@
         };
       };
     };
-    mime = {
-      enable = true;
-      # defaultApplications = {};
-    };
-    menus.enable = true;
   };
   environment.etc."xdg/menus/applications.menu".source =
     pkgs.kdePackages.plasma-workspace + "/etc/xdg/menus/plasma-applications.menu";
@@ -34,4 +26,5 @@
   # this is to fix the issue that portal-kde's .service file wasn't being added to the location it was supposed to.
 
   services.udisks2.enable = true;
+  # this is for kio/dolphin to be allowed to mount or unmount disks/partitions .
 }

@@ -1,4 +1,4 @@
-{...}: {
+{lib, ...}: {
   # environment.systemPackages = with pkgs; [];
   # TODO get this themed
   # TODO allow numlock, please
@@ -7,7 +7,7 @@
   };
   programs.regreet = {
     # any of theme, font, iconTheme or cursorTheme will also accept a package =   argument.
-    enable = true;
+    enable = lib.mkDefault true;
     # theme = {
     #   name = "Adwaita";
     # };

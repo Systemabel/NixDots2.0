@@ -111,6 +111,12 @@ with pkgs; {
       nixd
       git
     ];
+    flake-building-utils = [
+      nix-index
+      nix-search-tv
+      nix-tree
+      zenity
+    ];
     gaming = [
       gamescope
       mangohud
@@ -125,10 +131,9 @@ with pkgs; {
       curl
       eza
       fastfetch
+      helix
       htop
       jq
-      nix-index
-      nix-tree
       ripgrep
       skim
       tealdeer
@@ -144,7 +149,7 @@ with pkgs; {
 
     core = hardware ++ security ++ system-cli-tools;
     desktop = compositor ++ guiShell ++ kde ++ dynamicTheming ++ fonts;
-    applications = userApps ++ devTools ++ gaming ++ cli ++ terminal;
+    applications = userApps ++ devTools ++ flake-building-utils ++ gaming ++ cli ++ terminal;
   in
     core ++ desktop ++ applications;
 }

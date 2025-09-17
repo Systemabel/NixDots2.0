@@ -3,7 +3,8 @@
     ./compositor
     ./themes
     ./display-manager.nix
-    ./portal.nix
+    ./portals
     # ./quickshell.nix
+    ./yazi.nix
   ];
 }

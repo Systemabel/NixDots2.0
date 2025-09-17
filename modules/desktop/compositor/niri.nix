@@ -1,15 +1,16 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: {
   nixpkgs.overlays = [inputs.niri-git.overlays.niri];
   programs.niri = {
-    enable = true;
+    enable = lib.mkDefault true;
     package = pkgs.niri-unstable;
   };
 
   services.xserver = {
-    enable = true;
+    enable = lib.mkDefault true;
   };
 }

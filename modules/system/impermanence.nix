@@ -61,22 +61,30 @@
       hideMounts = true;
       users.orca = {
         directories = [
+          ".cache/nix-index"
+          ".cache/mozilla"
           ".config/anyrun"
           ".config/fuzzel"
           ".config/ghostty"
           ".config/keepassxc"
           ".config/niri"
+          ".config/nix-search-tv"
           ".config/noctalia"
           ".config/pipewire"
           ".config/Plasticity"
           ".config/quickshell"
+          ".config/spotify"
           ".config/sunsetr"
+          ".config/television"
           ".config/VSCodium"
+          ".config/xdg-desktop-portal-termfilechooser"
+          ".git"
           ".local/share/color-schemes"
           ".local/share/dbus-1"
           ".local/share/gk"
           ".local/share/Trash"
           ".local/state/clipvault"
+          ".local/state/nix"
           ".local/state/wireplumber"
           ".mozilla"
           ".pki"
@@ -86,7 +94,6 @@
           "Documents"
           "Pictures/Wallpapers"
           "flake"
-          "flake2"
         ];
         files = [
           ".config/dolphinrc"
@@ -100,6 +107,7 @@
           ".bash_history"
           ".face"
           ".gitconfig"
+          ".gitignore"
           ".zsh_history"
         ];
       };

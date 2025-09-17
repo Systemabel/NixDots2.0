@@ -1,3 +1,3 @@
-{...}: {
-  programs.steam.enable = true;
+{lib, ...}: {
+  programs.steam.enable = lib.mkDefault true;
 }
