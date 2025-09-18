@@ -1,29 +1,49 @@
-# NixDots2.0
+# NixOS Desktop Flake
 
-## STATUS
+## What's Working?
 
-Working:
-
-- Niri working on "niri-unstable" from
-  [sodiboo's niri flake](https://github.com/sodiboo/niri-flake).
-- Niri de-gnomified
-  - using **xdg-desktop-portal-kde** and **-wlr**
+- Niri is from
+  [sodiboo's niri flake](https://github.com/sodiboo/niri-flake) and running flawlessly.
+- It's de-gnomified as much as I can tell -- the more I configure the
+  environment variaples, dotfiles, and futz around with the memes, the less gnome I see.
+  - Even though niri devs document that they list gnome-keyring as an install
+    dependency, that hasn't seemed to be a hardset rule. With keepassxc installed,
+    (and set as the secret service provider) nix's package dependency seems to
+    "intelligently" recognize that gnome-keyring is unnecessary. We'll see if that
+    stays true after I do a totally fresh install.
+- Currently still using xdp-gtk
+  - using **xdg-desktop-portal-termfilechooser** and **-wlr**
   - [keepassxc](https://github.com/keepassxreboot/keepassxc) instead of
-    gnome-keyring
-  - See `modules/catalogue.nix` for the full list of installed apps
-    > note: `modules/catalogue.nix` is not actually used in the flake, it's just
-    > something that I'm keeping around for clarity's sake.
+    gnome-keyring, as mentioned above
+  - See `modules/pkgs-masterlist.nix` and `modules/programs-masterlist.nix` to
+    see nearly everything that's included in this flake.
 
-Not working:
+## What's Not Working:
 
-- Well, let's look at what _is_ working for now...
+- Luks encryption has not been setup yet, nor has secrets management. Coming
+  soon!
+- Currently I'm bouncing around qs curations: mainly Noctalia's and
+  DankMaterialShell. Noctalia-shell has very few dependencies. DankMaterialShell
+  still mostly works even when I'm missing a significant chunk of dependencies.
+  The more comprehensive/heavy dots files will not start at all (end-4,
+  Caelestia dots). I won't be trying to get those working, though I will be
+  poking through everyone's quickshell modules and curating/tweaking to what
+  suits my taste.
+- small bugs around the place.
+  - Dolphin won't open any file or populate a menu
+    list without basically 5-10 other seemingly random kdePackages (not random,
+    but too much of a hassle to keep track of of, and I've quickly started getting
+    used to yazi for all that).
+  - some config files seem to not be applying correctly (maybe I've lost track
+    of some options I set somewhere in the flake).
+  - unconfirmed (not configured) operation of screenshots, screen recording,
+    sleep, hibernation, & session lock screen. And I really need the numpad on
+    regreet, so that's a WIP.
 
 ## This flake is a big combination of various tutorial flakes
 
 - https://saylesss88.github.io/installation/index.html
 - https://code.m3ta.dev/m3tam3re/nixcfg
-
----
 
 ## Dots-inspiration (thank you to y'all)
 
@@ -75,15 +95,20 @@ alternative that's receiving regular development. It's a preference.
 ### Design choices
 
 `anyrun` : ([gh](https://github.com/anyrun-org/anyrun)) Runs nice. Does nice
-things. Written in rust.
+things. Written in rust. --update: needed to replace it when uninstalling HM.
+Ultimately, it may be replaced with some variants of skim, television, fuzzel,
+qs, etc. We'll see. I still enjoyed how it felt.
 
 `clipvault` : ([gh](https://github.com/Rolv-Apneseth/clipvault)) Inspired by
-cliphist, added features, written in rust.
+cliphist, added features, written in rust. It's been working reliably and has
+sped along my work flow as well.
 
 `keepassxc` : ([gh](https://github.com/keepassxreboot/keepassxc)) I've seen
 some rumors about security implementation issues with gnome-keyring.
 Kde/plasma's keyring is flawed from a security standpoint, and I don't believe
-it can function as a secret service provider --> keepassxc does.
+it can function as a secret service provider --> keepassxc does. Seems to work
+fine - I haven't really encountered any use-cases for the secret service stuff
+yet.
 
 > note: security is always a balance of accessibility vs hardening. For example,
 > automatically unlocking the keyring at login effectively makes the keyring
@@ -91,13 +116,29 @@ it can function as a secret service provider --> keepassxc does.
 
 `sunsetr` : ([gh](https://github.com/psi4j/sunsetr)) It just works, it's rust,
 and it's been super helpful in early-setup. Thank you **psi4** for your
-contribution.
+contribution. Really, it just worked right out of the box, and I can't even seem
+to break it if I tried. Well done.
 
-`xdg-desktop-portal-kde` : Away with gnome! What I found is that xdg portals are
+`xdg-desktop-portal-??` : Away with gnome! What I found is that xdg portals are
 mostly agnostic, but each provide different feature sets. Portal-kde is fairly
 complete and has everything needed to replace -gtk and -gnome. Apparently there
 are some bugs with screen sharing or something (?) so -wlr is also included.
-I also just like dolphin more than nautilus.
+I also just like dolphin more than nautilus. And also, KDE seems to be a
+fractured mess of dependencies.
+
+Additionally, I heard Jonathan Riddell (KDE founder) has parted ways with KDE
+recently due to changes in KDE's dev-team's workflow organization/communication
+or something. Who really knows what goes on behind closed doors, but it seems
+like kde is slightly changing some aspects of plasma desktop. I like what I see,
+and also old+new kde programs are bundled up together in the same lists and
+that's just annoying for one program to have gotten it's last commit 8+ years
+ago and then the next package got an update just 4 days ago. I can see that
+organization is just an issue all aroung.
+
+Meanwhile, yazi will basically replace all open/save/browse file functions and
+calls in one go, and it seems to be working well! It also shows photos in the
+preview, so I don't really need to open koko or another photo viewer nearly as
+frequently!
 
 ## Roadmap
 
@@ -107,10 +148,14 @@ I also just like dolphin more than nautilus.
 - [x] custom kernel patches (settled with cachyos-kernel-lto from chaotic)
 - [x] escape home manager
 - [ ] set up encryption (and decryption options)
-- [ ] shell: [quickshell](https://github.com/quickshell-mirror/quickshell)
-- [ ] dynamic color theming
+- [ ] shell: [quickshell](https://github.com/quickshell-mirror/quickshell) (<--progress)
+- [ ] dynamic color theming (<--also progress)
 - [ ] incorporate local ai tools
-- [ ] create cohesion of all the parts!
-- [ ] get more sleep...
+- [ ] create cohesion of all the parts! (pretty close)
+- [x] get more sleep...
 
-## Stay tuned...
+I would consider this flake in its late alpha stage. Bootable, workable, but
+unless you're a tinkerer and you want to make some contributions, keep looking
+elsewhere and come by a little later! :)
+
+## Stay tuned
