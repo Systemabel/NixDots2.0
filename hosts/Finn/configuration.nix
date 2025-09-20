@@ -22,6 +22,7 @@
     layout = "us";
     variant = ""; # empty "" is qwerty. You can also do something like
     # "colemak" or "dvorak" if you wanted to...
+    options = "numlock:on";
   };
 
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .

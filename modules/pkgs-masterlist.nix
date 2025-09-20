@@ -15,6 +15,7 @@ with pkgs; {
       kdePackages.polkit-kde-agent-1
     ];
     system-cli-tools = [
+      pciutils
       (lib.hiPrio pkgs.uutils-coreutils-noprefix) #lib.hiPrio is used to avoid potential conflict with 'coreutils-full'
       uutils-findutils
       uutils-diffutils
@@ -45,6 +46,7 @@ with pkgs; {
       sunsetr
       swww
       waytrogen
+      wiremix
     ];
     kde = with kdePackages; [
       breeze
@@ -95,11 +97,13 @@ with pkgs; {
       kodiPackages.netflix
       kodiPackages.steam-library
       kodiPackages.steam-launcher
+      vesktop
     ];
     devTools = [
       vscodium
       alejandra
       direnv
+      inotify-tools
       nixd
       git
     ];
@@ -129,9 +133,11 @@ with pkgs; {
       ripgrep
       skim
       tealdeer
+      tmux
       translate-shell
       trash-cli
       wl-clipboard
+      yazi
     ];
     terminal = [
       ghostty

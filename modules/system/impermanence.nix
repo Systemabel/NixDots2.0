@@ -81,6 +81,7 @@
           ".config/sunsetr"
           ".config/television"
           ".config/tmux"
+          ".config/vesktop"
           ".config/VSCodium"
           ".config/xdg-desktop-portal-termfilechooser"
           ".config/yazi"
@@ -88,6 +89,7 @@
           ".local/share/color-schemes"
           ".local/share/dbus-1"
           ".local/share/gk"
+          ".local/share/Steam"
           ".local/share/Trash"
           ".local/state/clipvault"
           ".local/state/nix"
@@ -96,9 +98,12 @@
           ".pki"
           ".plasticity"
           ".ssh"
+          ".steam"
           ".vscode-oss"
+          "archroot"
           "Documents"
           "flake"
+          "Games"
           "Pictures/Wallpapers"
         ];
         files = [
@@ -115,6 +120,8 @@
           ".face"
           ".gitconfig"
           ".gitignore"
+          ".steampath"
+          ".steampid"
           ".zsh_history"
         ];
       };
