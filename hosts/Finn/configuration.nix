@@ -25,6 +25,13 @@
     options = "numlock:on";
   };
 
+  # My desktop computer has a particular motherboard with pcie devices that wake
+  # up the system from sleep immediately. This is supposed to solve the issue.
+  # see more: https://nixos.wiki/wiki/Power_Management
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="pci", DRIVER=="pcieport", ATTR{power/wakeup}="disabled"
+  '';
+
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "25.05"; # Did you read the comment?
 }

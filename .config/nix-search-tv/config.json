@@ -1,0 +1,13 @@
+{
+  "indexes": ["nixpkgs", "nur", "nixos"],
+  "update_interval": "3h2m1s",
+  "enable_waiting_message": true,
+  "experimental": {
+    "render_docs_indexes": {
+      "nvf": "https://notashelf.github.io/nvf/options.html"
+    },
+    "options_file": {
+      "agenix": "<path to options.json>"
+    }
+  }
+}

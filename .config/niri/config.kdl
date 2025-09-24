@@ -1,0 +1,388 @@
+// ** Env **
+environment {
+    DISPLAY ":0"
+    "ELECTRO_OZONE_PLATFORM_HINT" "auto"
+    "QT_QPA_PLATFORM" "wayland"
+    TERM "ghostty"
+    EDITOR "nvim"
+    qsConfig "noctalia-shell"
+}
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// ** Exec **
+spawn-sh-at-startup "qs -c $qsConfig &"
+spawn-sh-at-startup "wl-paste --watch clipvault store &"
+spawn-sh-at-startup "keepassxc"
+spawn-sh-at-startup "sunsetr"
+spawn-sh-at-startup "niriswitcher"
+spawn-sh-at-startup "mako" // This isn't even configured and it's annoying, but
+// It's just for me right now while I'm configuring so that I don't miss 
+// notifications without having quickshell working how I like it
+
+// spawn-sh-at-startup "hypridle" // This is handled by a systemd service
+// TODO though I feel that it's preferred it's run at startup. I'll get to This
+// eventually.
+
+// spawn-sh-at-startup "kded6 &"
+// spawn-sh-at-startup "kglobalaccel6 &"
+// these were both important for running the kde portal, though I'm abandonging
+// that for the sake of using yazi for file browsing and the built-in defaults
+// (for now)
+
+// ** Input **
+input {
+    keyboard {
+        xkb {
+            layout ""
+            model ""
+            rules ""
+            variant ""
+        }
+        repeat-delay 250
+        repeat-rate 40
+        track-layout "global"
+        numlock
+    }
+    touchpad {
+        tap
+        drag true
+        natural-scroll
+        accel-speed 0.200000
+        accel-profile "adaptive"
+        scroll-method "two-finger"
+        click-method "clickfinger"
+        tap-button-map "left-right-middle"
+    }
+    mouse {
+        accel-speed 0.200000
+        accel-profile "adaptive"
+    }
+    focus-follows-mouse max-scroll-amount="0%"
+    mod-key "super"
+    mod-key-nested "alt"
+}
+gestures {
+    dnd-edge-view-scroll {
+        trigger-width 100
+        delay-ms 250
+    }
+    dnd-edge-workspace-switch {
+        trigger-height 50
+        delay-ms 250
+    }
+}
+
+// ** Output **
+output "DP-1" {
+    focus-at-startup
+    transform "normal"
+    position x=0 y=0
+    mode "3440x1440@144.000000"
+    variable-refresh-rate on-demand=false
+}
+
+// ** Style **
+prefer-no-csd
+layout {
+    gaps 24
+    struts {
+        left 0
+        right 0
+        top 0
+        bottom 0
+    }
+    focus-ring { width 1; }
+    border { width 1; }
+    shadow {
+        on
+        offset x=0 y=0
+        softness 20
+        spread 2
+        draw-behind-window false
+        color "#000000"
+    }
+    tab-indicator {
+        hide-when-single-tab
+        gap 5
+        width 4.000000
+        length total-proportion=0.500000
+        position "left"
+        gaps-between-tabs 0
+        corner-radius 12
+    }
+    default-column-width
+    preset-column-widths {
+        proportion 0.333333
+        proportion 0.500000
+        proportion 0.666667
+        fixed 3440
+    }
+    preset-window-heights {
+        proportion 0.333333
+        proportion 0.500000
+        proportion 0.666667
+        fixed 1440
+    }
+    center-focused-column "never"
+    always-center-single-column
+    empty-workspace-above-first
+}
+cursor {
+    xcursor-theme "default"
+    xcursor-size 24
+}
+
+// ** Layers **
+layer-rule {
+    match namespace="quickshell"
+    shadow {
+        off
+        softness 15
+        spread 5
+        offset x=0 y=0
+        draw-behind-window true
+        color "#00000064"
+    }
+}
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
+// Make fuzzel FLOAT.
+//layer-rule {
+    //match namespace="^launcher$"
+
+    //baba-is-float true
+//}
+
+
+// ** Window Rules **
+window-rule {
+    geometry-corner-radius 24
+    clip-to-geometry true
+}
+window-rule {
+    match app-id="ghostty"
+    match app-id="VSCodium"
+    opacity 0.90
+    draw-border-with-background false
+}
+// File pickers and system dialogs
+window-rule {
+    match title="yazi*"
+    open-floating true
+    default-column-width {fixed 1080;}
+    default-window-height {fixed 630;}
+    clip-to-geometry true
+}
+window-rule {
+    match title="BTOP"
+    open-floating true
+    default-column-width { proportion 0.75; }
+    default-window-height {fixed 630;}
+    clip-to-geometry true
+    opacity 0.90
+}
+
+// Password-related applications
+window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    open-floating true
+    default-column-width { fixed 800; }
+    default-window-height { fixed 600; }
+    clip-to-geometry true
+    default-floating-position x=0 y=0 relative-to="top"
+}
+
+// KeePassXC unlock dialogs
+window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"# title="^Unlock Database"
+    open-floating true
+    open-focused true
+    default-column-width { fixed 400; }
+    default-window-height { fixed 300; }
+    clip-to-geometry true
+    default-floating-position x=0 y=0 relative-to="top"
+}
+// System authentication dialogs
+window-rule {
+    match title="^(Authentication|Password|Passphrase)"
+    match title="^(Authenticate|Enter Password|Unlock)"
+    open-floating true
+    open-focused true
+    default-column-width { fixed 400; }
+    default-window-height { fixed 250; }
+    clip-to-geometry true
+    default-floating-position x=0 y=0 relative-to="top"
+}
+
+// GNOME/GTK file choosers
+window-rule {
+    match title="^(Select|Choose) File"
+    match title="^Save File"
+    match title="^Open File"
+    open-floating true
+    default-column-width { proportion 0.6; }
+    default-window-height { proportion 0.7; }
+    clip-to-geometry true
+}
+
+// Firefox picture-in-picture
+window-rule {
+    match app-id="firefox$" title="^Picture-in-Picture$"
+    open-floating true
+    default-column-width { fixed 480; }
+    default-window-height { fixed 270; }
+    clip-to-geometry true
+    default-floating-position x=32 y=32 relative-to="bottom-right"
+}
+
+// Application preference/settings windows
+window-rule {
+    match title="^(Preferences|Settings|Options|Configure)"
+    open-floating true
+    default-column-width { fixed 700; }
+    default-window-height { fixed 500; }
+    clip-to-geometry true
+}
+
+// Small utility dialogs
+window-rule {
+    match title="^(About|Error|Warning|Information|Confirm)"
+    open-floating true
+    default-column-width { fixed 400; }
+    default-window-height { fixed 200; }
+    clip-to-geometry true
+    default-floating-position x=0 y=0 relative-to="top"
+}
+
+
+binds {
+    // ** Accessibility **
+    mod+slash { show-hotkey-overlay; }
+    super+alt+S hotkey-overlay-title="Text-to-voice" { spawn "sh" "-c" "pkill orca || exec orca"; }
+
+    // ** Workspaces **
+    // Note: Using Colemak-DH layout. For QWERTY, see reference mapping in comments.
+    mod+O repeat=false { toggle-overview; }
+
+    // ** Focus **
+    mod+tab { focus-workspace-previous; }
+    mod+up { focus-window-or-workspace-up; }
+    mod+down { focus-window-or-workspace-down; }
+    mod+left { focus-column-left; }
+    mod+right { focus-column-right; }
+    mod+U { focus-window-or-workspace-up; }
+    mod+E { focus-window-or-workspace-down; }
+    mod+N { focus-column-left; }
+    mod+I { focus-column-right; }
+    mod+1 { focus-workspace "1"; }
+    mod+2 { focus-workspace "2"; }
+    mod+3 { focus-workspace "3"; }
+    mod+4 { focus-workspace "4"; }
+    mod+5 { focus-workspace "5"; }
+    mod+6 { focus-workspace "6"; }
+    mod+7 { focus-workspace "7"; }
+    mod+8 { focus-workspace "8"; }
+    mod+9 { focus-workspace "9"; }
+
+    // ** Move Window (and columns) **
+    super+alt+up { move-window-up-or-to-workspace-up; }
+    super+alt+down { move-window-down-or-to-workspace-down; }
+    super+alt+left { move-column-left; }
+    super+alt+right { move-column-right; }
+    super+alt+U { move-window-up-or-to-workspace-up; }
+    super+alt+E { move-window-down-or-to-workspace-down; }
+    super+alt+N { move-column-left; }
+    super+alt+I { move-column-right; }
+    super+alt+ctrl+up { move-column-to-workspace-up; }
+    super+alt+ctrl+down { move-column-to-workspace-down; }
+    super+alt+home { move-column-to-first; }
+    super+alt+end { move-column-to-last; }
+    super+alt+ctrl+U { move-window-up-or-to-workspace-up; }
+    super+alt+ctrl+E { move-window-down-or-to-workspace-down; }
+    super+alt+1 { move-window-to-workspace "1"; }
+    super+alt+2 { move-window-to-workspace "2"; }
+    super+alt+3 { move-window-to-workspace "3"; }
+    super+alt+4 { move-window-to-workspace "4"; }
+    super+alt+5 { move-window-to-workspace "5"; }
+    super+alt+6 { move-window-to-workspace "6"; }
+    super+alt+7 { move-window-to-workspace "7"; }
+    super+alt+8 { move-window-to-workspace "8"; }
+    super+alt+9 { move-window-to-workspace "9"; }
+    super+alt+ctrl+1 { move-window-to-workspace "2"; }
+    super+alt+ctrl+2 { move-window-to-workspace "1"; }
+    super+alt+ctrl+3 { move-window-to-workspace "3"; }
+    super+alt+ctrl+4 { move-window-to-workspace "4"; }
+    super+alt+ctrl+5 { move-window-to-workspace "5"; }
+    super+alt+ctrl+6 { move-window-to-workspace "6"; }
+    super+alt+ctrl+7 { move-window-to-workspace "7"; }
+    super+alt+ctrl+8 { move-window-to-workspace "8"; }
+    super+alt+ctrl+9 { move-window-to-workspace "9"; }
+
+    // ** Move Workspace **
+    "mod+ctrl+page_up" { move-workspace-up; }
+    "mod+ctrl+page_down" { move-workspace-down; }
+
+    // ** Window Adjustments **
+    mod+Q { close-window; }
+    alt+f4 { close-window; }
+    super+alt+C { center-column; }
+    super+ctrl+C { center-visible-columns; }
+    mod+comma { set-column-width "-10%"; }
+    mod+period { set-column-width "+10%"; }
+    super+alt+R { switch-preset-column-width; }
+    mod+ctrl+R { reset-window-height; }
+    super+alt+F { maximize-column; }
+    mod+F { fullscreen-window; }
+    mod+ctrl+F { expand-column-to-available-width; }
+    mod+shift+M { consume-or-expel-window-left; }
+    mod+shift+O { consume-or-expel-window-right; }
+    mod+K { toggle-column-tabbed-display; }
+    mod+space { toggle-window-floating; }
+
+    // ** Session **
+    mod+escape hotkey-overlay-title="Power menu" { spawn "sh" "-c" ""; }
+    ctrl+alt+delete hotkey-overlay-title="Task Manager (btop)" { spawn-sh "ghostty --title='BTOP' -e btop"; }
+    super+alt+escape hotkey-overlay-title="Lockscreen" { spawn "sh" "-c" "loginctl lock-session"; }
+    super+ctrl+escape hotkey-overlay-title="Logout" { quit; }
+    ctrl+alt+super+escape hotkey-overlay-title="Sleep" { spawn "sh" "-c" "systemctl suspend"; }
+    ctrl+alt+super+shift+escape hotkey-overlay-title="Hibernate" { spawn "sh" "-c" "systemctl hibernate"; }
+    ctrl+alt+super+shift+delete hotkey-overlay-title="Shut Down" { spawn "sh" "-c" "systemctl poweroff"; }
+
+    // ** Display **
+    XF86MonBrightnessUp cooldown-ms=300 { spawn "sh" "-c" "ddcutil -b 6 setvcp 10 + 10"; }
+    XF86MonBrightnessDown cooldown-ms=300 { spawn "sh" "-c" "ddcutil -b 6 setvcp 10 - 10"; }
+
+    // ** Audio/Media Controls **
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "sh" "-c" "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "sh" "-c" "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
+    XF86AudioMute allow-when-locked=true { spawn "sh" "-c" "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioPlay allow-when-locked=true { spawn "sh" "-c" "playerctl play-pause"; }
+    XF86AudioNext allow-when-locked=true { spawn "sh" "-c" "playerctl next"; }
+    XF86AudioPrev allow-when-locked=true { spawn "sh" "-c" "playerctl previous"; }
+
+    // ** System **
+    mod+return hotkey-overlay-title="Anyrun" { spawn "anyrun"; }
+    // mod+v { spawn-sh "clipvault list | fuzzel --dmenu | clipvault get | wl-copy"; }
+    mod+v { spawn-sh "clipvault list | anyrun --plugins /run/current-system/sw/lib/libstdin.so | clipvault get | wl-copy"; }
+
+
+    // ** Application Launches **
+    mod+W hotkey-overlay-title="Launch Web-browser" { spawn "firefox"; }
+    mod+B hotkey-overlay-title="Launch file-Browser (dolphin)" { spawn "dolphin"; }
+    mod+T hotkey-overlay-title="Launch Terminal (ghostty)" { spawn "ghostty"; }
+    mod+C hotkey-overlay-title="Launch vsCode" { spawn "codium"; }
+    mod+X hotkey-overlay-title="Launch text-editor (Kate)" { spawn "kate"; }
+    mod+S hotkey-overlay-title="Launch Spotify" { spawn "spotify"; }
+    mod+ctrl+S { spawn "sh" "-c" "spicetify apply"; }
+
+    // ** Window Switcher (niriswitcher) **
+    Alt+Tab repeat=false { spawn "niriswitcherctl" "show" "--window"; }
+    Alt+Shift+Tab repeat=false { spawn "niriswitcherctl" "show" "--window"; }
+    Alt+Grave repeat=false { spawn "niriswitcherctl" "show" "--workspace"; }
+    Alt+Shift+Grave repeat=false { spawn "niriswitcherctl" "show" "--workspace"; }
+
+    // ** Test **
+    super+alt+j { spawn-sh "ghostty --title='yazi' -e yazi"; }
+}

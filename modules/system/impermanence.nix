@@ -89,7 +89,7 @@
           ".local/share/color-schemes"
           ".local/share/dbus-1"
           ".local/share/gk"
-          ".local/share/Steam"
+          # ".local/share/Steam"
           ".local/share/Trash"
           ".local/state/clipvault"
           ".local/state/nix"

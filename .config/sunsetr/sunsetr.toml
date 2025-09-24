@@ -1,0 +1,28 @@
+#[Sunsetr configuration]
+backend = "auto"                # Backend to use: "auto", "hyprland" or "wayland"
+start_hyprsunset = false        # Set true if you're not using hyprsunset.service
+transition_mode = "geo"         # Select: "geo", "finish_by", "start_at", "center"
+
+#[Shoothing]
+smoothing = true		# Enable shooth transitions during startup and exit
+startup_duration = 5          # Duration of smooth startup in secongs (0.1-60 | 0 = instant)
+shutdown_duration = 5		# Duration of shooth shutdown in seconds (0.1-60 | 0 = instant)
+adaptive_interval = 1		# Adaptive interval base for shooth transitions (1-1000)ms
+
+#[Time-based config]
+night_temp = 2500               # Color temperature after sunset (1000-20000) Kelvin
+day_temp = 6500                 # Color temperature during day (1000-20000) Kelvin
+night_gamma = 95                # Gamma percentage for night (10-100%)
+day_gamma = 100                 # Gamma percentage for day (10-100%)
+update_interval = 60            # Update frequency during transitions in seconds (10-300)
+
+#[Static config]
+static_temp = 5000
+static_gamma = 90
+
+#[Manual transitions]
+sunset = "19:00:00"             # Time to transition to night mode (HH:MM:SS) - ignored in geo mode
+sunrise = "06:00:00"            # Time to transition to day mode (HH:MM:SS) - ignored in geo mode
+transition_duration = 80        # Transition duration in minutes (5-120)
+
+# TODO Make sure to make your own geo.toml (check out the github repo for sunsetr for an example)

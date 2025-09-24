@@ -127,7 +127,6 @@ with pkgs; {
       curl
       eza
       fastfetch
-      helix
       htop
       jq
       ripgrep

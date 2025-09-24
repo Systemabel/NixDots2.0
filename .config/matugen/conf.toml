@@ -1,0 +1,67 @@
+[config]
+
+# TODO create the templates, then consolidate the configs that share the same convention for colors into common templates.
+
+# Define a global image to generate the color palette from
+image = "/path/to/my/wallpaper.jpg"
+
+# Define the templates for each program, using different output paths
+# Matugen will automatically process each template when it runs.
+
+[templates.anyrun]
+input_path = "$XDG_CONFIG_HOME/matugen/templates/anyrun.tmpl"
+output_path = "$XDG_CONFIG_HOME/anyrun/style.css"
+
+[templates.btop]
+input_path = "$XDG_CONFIG_HOME/matugen/templates/btop.tmpl"
+output_path = "$XDG_CONFIG_HOME/btop/themes/matugen.theme"
+
+[templates.cava]
+input_path = "$XDG_CONFIG_HOME/matugen/templates/cava-colors.ini"
+output_path = "$XDG_CONFIG_HOME/cava/themes/your-theme"
+post_hook = "pkill -USR1 cava"
+
+[templates.fuzzel]
+input_path = "$XDG_CONFIG_HOME/matugen/templates/fuzzel.tmpl"
+output_path = "$XDG_CONFIG_HOME/fuzzel/colors.ini"
+
+[templates.ghostty]
+input_path = "$XDG_CONFIG_HOME/matugen/templates/ghostty.tmpl"
+output_path = "$XDG_CONFIG_HOME/ghostty/themes/matugen-ghostty"
+
+[templates.helix]
+input_path = "$XDG_CONFIG_HOME/matugen/templates/helix.tmpl"
+output_path = "$XDG_CONFIG_HOME/helix/themes/matugen.toml"
+
+[templates.hyprlock]
+input_path = "$XDG_CONFIG_HOME/matugen/templates/hyprlock.tmpl"
+output_path = "~/.config/hypr/colors.conf"
+
+[templates.spicetify]
+input_path = "$XDG_CONFIG_HOME/matugen/templates/spicetify.tmpl"
+output_path = "$XDG_CONFIG_HOME/spotify/matugen-spotify"
+
+[templates.television]
+input_path = "$XDG_CONFIG_HOME/matugen/templates/television.toml"
+output_path = "$XDG_CONFIG_HOME/television/themes/matugen.toml"
+
+[templates.VSCodium]
+input_path = "$XDG_CONFIG_HOME/matugen/templates/vscode.tmpl"
+output_path = "$XDG_CONFIG_HOME/VSCodium/matugen-code"
+
+[templates.yazi]
+input_path = "$XDG_CONFIG_HOME/matugen/templates/yazi.tmpl"
+output_path = "$XDG_CONFIG_HOME/yazi/theme.toml"
+
+[templates.starship]
+input_path = "$XDG_CONFIG_HOME/matugen/templates/matugen/starship.tmpl"
+output_path = "$XDG_CONFIG_HOME/starship-matugen.toml"
+
+# For GTK theming, define paths for different versions
+[templates.gtk4]
+input_path = "$XDG_CONFIG_HOME/matugen/templates/gtk4.tmpl"
+output_path = "$XDG_CONFIG_HOME/gtk-4.0/gtk.css"
+
+[templates.gtk3]
+input_path = "$XDG_CONFIG_HOME/matugen/templates/gtk3.tmpl"
+output_path = "$XDG_CONFIG_HOME/gtk-3.0/gtk.css"
