@@ -19,7 +19,7 @@ spawn-sh-at-startup "mako" // This isn't even configured and it's annoying, but
 // It's just for me right now while I'm configuring so that I don't miss 
 // notifications without having quickshell working how I like it
 
-// spawn-sh-at-startup "hypridle" // This is handled by a systemd service
+spawn-sh-at-startup "hypridle" // This is handled by a systemd service - not anymore
 // TODO though I feel that it's preferred it's run at startup. I'll get to This
 // eventually.
 
@@ -82,7 +82,7 @@ output "DP-1" {
 }
 
 // ** Style **
-prefer-no-csd
+// prefer-no-csd
 layout {
     gaps 24
     struts {
@@ -158,28 +158,30 @@ layer-rule {
 
 // ** Window Rules **
 window-rule {
-    geometry-corner-radius 24
-    clip-to-geometry true
+  geometry-corner-radius 20
+  clip-to-geometry true
+  draw-border-with-background false
 }
 window-rule {
-    match app-id="ghostty"
-    match app-id="VSCodium"
-    opacity 0.90
-    draw-border-with-background false
+  match app-id="ghostty"
+  match app-id="VSCodium"
+  match app-id="kate"
+  opacity 0.90
 }
 // File pickers and system dialogs
 window-rule {
-    match title="yazi*"
+    match title=r#"Yazi:"#
     open-floating true
-    default-column-width {fixed 1080;}
-    default-window-height {fixed 630;}
+    min-width 1200
+    min-height 800
     clip-to-geometry true
+    opacity 0.9
 }
 window-rule {
     match title="BTOP"
     open-floating true
-    default-column-width { proportion 0.75; }
-    default-window-height {fixed 630;}
+    min-width 820
+    min-height 480
     clip-to-geometry true
     opacity 0.90
 }
@@ -343,7 +345,7 @@ binds {
 
     // ** Session **
     mod+escape hotkey-overlay-title="Power menu" { spawn "sh" "-c" ""; }
-    ctrl+alt+delete hotkey-overlay-title="Task Manager (btop)" { spawn-sh "ghostty --title='BTOP' -e btop"; }
+    ctrl+alt+delete hotkey-overlay-title="Task Manager (btop)" { spawn-sh "ghostty --title='BTOP' --window-padding-x=5 --window-padding-y=5 -e btop"; }
     super+alt+escape hotkey-overlay-title="Lockscreen" { spawn "sh" "-c" "loginctl lock-session"; }
     super+ctrl+escape hotkey-overlay-title="Logout" { quit; }
     ctrl+alt+super+escape hotkey-overlay-title="Sleep" { spawn "sh" "-c" "systemctl suspend"; }
@@ -370,7 +372,7 @@ binds {
 
     // ** Application Launches **
     mod+W hotkey-overlay-title="Launch Web-browser" { spawn "firefox"; }
-    mod+B hotkey-overlay-title="Launch file-Browser (dolphin)" { spawn "dolphin"; }
+    mod+B hotkey-overlay-title="Launch file-Browser (yazi)" { spawn-sh "ghostty -e yazi"; }
     mod+T hotkey-overlay-title="Launch Terminal (ghostty)" { spawn "ghostty"; }
     mod+C hotkey-overlay-title="Launch vsCode" { spawn "codium"; }
     mod+X hotkey-overlay-title="Launch text-editor (Kate)" { spawn "kate"; }

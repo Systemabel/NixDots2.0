@@ -106,6 +106,7 @@ with pkgs; {
       inotify-tools
       nixd
       git
+      kdePackages.qtdeclarative
     ];
     flake-building-utils = [
       nix-index
@@ -122,6 +123,7 @@ with pkgs; {
       protonup-rs
     ];
     cli = [
+      astroterm
       bat
       btop
       curl

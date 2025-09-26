@@ -4,6 +4,6 @@
     ./themes
     ./display-manager.nix
     ./portals
-    # ./quickshell.nix
+    ./quickshell.nix
   ];
 }
