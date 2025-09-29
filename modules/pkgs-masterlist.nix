@@ -20,6 +20,8 @@ with pkgs; {
       uutils-findutils
       uutils-diffutils
       usbutils
+      exfatprogs
+      caligula
     ];
 
     # ---

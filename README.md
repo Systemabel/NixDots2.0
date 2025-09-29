@@ -22,14 +22,7 @@
 
 - Luks encryption has not been setup yet, nor has secrets management. Coming
   soon!
-- Currently I'm bouncing around qs curations: mainly Noctalia's and
-  DankMaterialShell. Noctalia-shell has very few dependencies. DankMaterialShell
-  still mostly works even when I'm missing a significant chunk of dependencies.
-  The more comprehensive/heavy dots files will not start at all (end-4,
-  Caelestia dots). I won't be trying to get those working, though I will be
-  poking through everyone's quickshell modules and curating/tweaking to what
-  suits my taste.
-- small bugs around the place.
+- There are some small bugs
   - Dolphin won't open any file or populate a menu
     list without basically 5-10 other seemingly random kdePackages (not random,
     but too much of a hassle to keep track of of, and I've quickly started getting
@@ -45,7 +38,7 @@
 - https://saylesss88.github.io/installation/index.html
 - https://code.m3ta.dev/m3tam3re/nixcfg
 
-## Dots-inspiration (thank you to y'all)
+## Dots-inspiration (thanks y'all)
 
 - [end-4 illogical impulse](https://github.com/end-4/dots-hyprland)
 - [Caelestia dots](https://github.com/caelestia-dots/shell?tab=readme-ov-file)
@@ -123,33 +116,29 @@ to break it if I tried. Well done.
 mostly agnostic, but each provide different feature sets. Portal-kde is fairly
 complete and has everything needed to replace -gtk and -gnome. Apparently there
 are some bugs with screen sharing or something (?) so -wlr is also included.
-I also just like dolphin more than nautilus. And also, KDE seems to be a
-fractured mess of dependencies.
+I also just like dolphin more than nautilus. Kde packages became hard to get
+working together (without installing everything? <-- this has been mentioned on
+forums)
 
-Additionally, I heard Jonathan Riddell (KDE founder) has parted ways with KDE
-recently due to changes in KDE's dev-team's workflow organization/communication
-or something. Who really knows what goes on behind closed doors, but it seems
-like kde is slightly changing some aspects of plasma desktop. I like what I see,
-and also old+new kde programs are bundled up together in the same lists and
-that's just annoying for one program to have gotten it's last commit 8+ years
-ago and then the next package got an update just 4 days ago. I can see that
-organization is just an issue all aroung.
-
-Meanwhile, yazi will basically replace all open/save/browse file functions and
+Yazi will basically replace all open/save/browse file functions and
 calls in one go, and it seems to be working well! It also shows photos in the
 preview, so I don't really need to open koko or another photo viewer nearly as
-frequently!
+frequently.
 
 ## Roadmap
+
+- quickshell is in the works! Big thanks to noctalia-shell and caelestia-shell
+  for inspiration and teaching tools. I'm learning what there is to know about
+  QML through reading through their ripos and many others.
 
 - [x] core system functionality
 - [x] get Niri working
 - [x] de-gnomify desktop environment
 - [x] custom kernel patches (settled with cachyos-kernel-lto from chaotic)
 - [x] escape home manager
-- [ ] set up encryption (and decryption options)
+- [ ] set up encryption (and decryption options) <on its way
 - [ ] shell: [quickshell](https://github.com/quickshell-mirror/quickshell) (<--progress)
-- [ ] dynamic color theming (<--also progress)
+- [ ] dynamic color theming (<--also progress) <will come with quickshell
 - [ ] incorporate local ai tools
 - [ ] create cohesion of all the parts! (pretty close)
 - [x] get more sleep...
