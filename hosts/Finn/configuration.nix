@@ -25,6 +25,18 @@
     options = "numlock:on";
   };
 
+  # These two options are for enabling the drivers for my GPU, then
+  # enabling encryption!
+  boot.initrd = {
+    kernelModules = ["amdgpu"];
+    luks.devices = {
+      cryptroot = {
+        device = "/dev/disk/by-partlabel/luks";
+        allowDiscards = true;
+      };
+    };
+  };
+
   # My desktop computer has a particular motherboard with pcie devices that wake
   # up the system from sleep immediately. This is supposed to solve the issue.
   # see more: https://nixos.wiki/wiki/Power_Management

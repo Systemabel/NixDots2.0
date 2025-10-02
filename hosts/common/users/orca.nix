@@ -9,7 +9,8 @@
     home = "/home/orca";
     description = "orca";
     # Change me! generate with `mkpasswd -m SHA-512 -s`
-    # initialHashedPassword = "$6$9I35TBWjqxI.jPEm$fX37utl6dDHFMd0V5l5ZmwVcuOGFdaKWkngIZCv.ML8GFxOg5dhxvpIeHLc6TxGYW6paw5b3Nx5ujls/ChWXC.";
+    initialHashedPassword = "$6$FvDQ8oWQGK59OCJi$yW0cAwpJHZdZWOv9f7TwqUr5Zjtz9/E44pQIvpBLbgYEM/JzVdiwxBxN7ujEjrBXdaZ5lEBK8MQpwXUVnDtdT0";
+    # This one is "password"
 
     # "your-user"
     group = "orca";
@@ -39,45 +40,4 @@
     };
   };
   imports = [./orca];
-  # file Systems = {
-  #   #   "/home/orca/archroot" = {
-  #   #     device = "/dev/disk/by-uuid/cad53379-89a4-4110-b033-c6686ca0274d";
-  #   #     fsType = "btrfs";
-  #   #     depends = ["/home"];
-  #   #     options = [
-  #   #       "subvol=@"
-  #   #       "noatime"
-  #   #       "compress=zstd"
-  #   #       "autodefrag"
-  #   #     ];
-  #   #   };
-  #   # "/home/.mountme" = {
-  #   #   device = "/dev/disk/by-uuid/2e8b0fa2-be26-45dc-a19a-9bcfec2efd7f";
-  #   #   fsType = "btrfs";
-  #   #   depends = ["/home"];
-  #   #   options = [
-  #   #     "subvol=@home"
-  #   #     "noatime"
-  #   #     "compress=zstd"
-  #   #     "autodefrag"
-  #   #   ];
-  #   # };
-  #   # "/home/myliege" = {
-  #   #   device = "/home/.mountme/myliege";
-  #   #   fsType = "none";
-  #   #   depends = ["/home/.mountme"];
-  #   #   options = ["bind"];
-  #   # };
-  #   "/home/orca/Games" = {
-  #     device = "/dev/disk/by-uuid/2e8b0fa2-be26-45dc-a19a-9bcfec2efd7f";
-  #     fsType = "btrfs";
-  #     depends = ["/home"];
-  #     options = [
-  #       "subvol=@games"
-  #       "noatime"
-  #       "compress=zstd"
-  #       "autodefrag"
-  #     ];
-  #   };
-  # };
 }

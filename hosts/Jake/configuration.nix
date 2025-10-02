@@ -17,6 +17,8 @@
     # accessibilityTools = [];
   };
 
+  boot.initrd.kernelModules = ["amdgpu"];
+
   console.keyMap = "us";
   services.xserver.xkb = {
     layout = "us";
