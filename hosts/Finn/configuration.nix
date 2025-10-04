@@ -17,14 +17,6 @@
     # accessibilityTools = [];
   };
 
-  console.keyMap = "us";
-  services.xserver.xkb = {
-    layout = "us";
-    variant = ""; # empty "" is qwerty. You can also do something like
-    # "colemak" or "dvorak" if you wanted to...
-    options = "numlock:on";
-  };
-
   # These two options are for enabling the drivers for my GPU, then
   # enabling encryption!
   boot.initrd = {

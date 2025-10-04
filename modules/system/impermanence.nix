@@ -10,27 +10,31 @@
     mount /dev/disk/by-partlabel/disk-main-root /btrfs_tmp
 
     if [[ -e /btrfs_tmp/@ ]]; then
-    mkdir -p /btrfs_tmp/old_roots
-    timestamp_root=$(date --date="@$(stat -c %Y /btrfs_tmp/@)" "+%Y-%m-%-d_%H:%M:%S")
-    mv /btrfs_tmp/@ "/btrfs_tmp/old_roots/$timestamp_root"
+      mkdir -p /btrfs_tmp/@snapshots/rootfs
+      timestamp_root=$(date --date="@$(stat -c %Y /btrfs_tmp/@)" "+%Y-%m-%-d_%H:%M:%S")
+      mv /btrfs_tmp/@ "/btrfs_tmp/@snapshots/rootfs/$timestamp_root"
     fi
 
     if [[ -e /btrfs_tmp/@home ]]; then
-    mkdir -p /btrfs_tmp/old_home
-    timestamp_home=$(date --date="@$(stat -c %Y /btrfs_tmp/@home)" "+%Y-%m-%-d_%H:%M:%S")
-    mv /btrfs_tmp/@home "/btrfs_tmp/old_home/$timestamp_home"
+      mkdir -p /btrfs_tmp/@snapshots/home
+      timestamp_home=$(date --date="@$(stat -c %Y /btrfs_tmp/@home)" "+%Y-%m-%-d_%H:%M:%S")
+      mv /btrfs_tmp/@home "/btrfs_tmp/@snapshots/home/$timestamp_home"
     fi
 
     delete_subvolume_recursively() {
-    IFS=$'\n'
-    for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
-    delete_subvolume_recursively "/btrfs_tmp/$i"
-    done
-    btrfs subvolume delete "$1"
+      IFS=$'\n'
+      for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
+        delete_subvolume_recursively "/btrfs_tmp/$i"
+      done
+      btrfs subvolume delete "$1"
     }
 
-    for i in $(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +30); do
-    delete_subvolume_recursively "$i"
+    for i in $(find /btrfs_tmp/@snapshots/rootfs/ -maxdepth 1 -mtime +30); do
+      delete_subvolume_recursively "$i"
+    done
+
+    for i in $(find /btrfs_tmp/@snapshots/home/ -maxdepth 1 -mtime +30); do
+      delete_subvolume_recursively "$i"
     done
 
     btrfs subvolume create /btrfs_tmp/@

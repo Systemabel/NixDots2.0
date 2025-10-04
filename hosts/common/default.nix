@@ -9,7 +9,7 @@
   systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
   imports = [
     ../../modules
-    ./users
+    ../../users
   ];
   nixpkgs = {
     # You can add overlays here
