@@ -335,9 +335,9 @@ echo
 
 echo "========================================================================="
 echo "Wiping $diskDesc, creating partitions, then mounting them..."
-echo "> sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount /flake/hosts/${hostname}/disk-config.nix"
+echo "> sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount ~/NixDots2.0/hosts/${hostname}/disk-config.nix"
 echo 
-sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount /flake/hosts/${hostname}/disk-config.nix
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount ~/NixDots2.0/hosts/${hostname}/disk-config.nix
 
 echo "========================================================================="
 echo "Initializing default hardware-configuration.nix..."
