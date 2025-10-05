@@ -299,7 +299,7 @@ echo
 echo "Thinking... reading... writing... copying..."
 echo "Applying username..."
 mv ./users/orca ./users/${username}
-sed -i "s/orca/${username}/g" ./users/user.nix
+sed -i "s/orca/${username}/g" ./users/${username}/user.nix
 sed -i "s/orca/${username}/g" ./users/default.nix
 sed -i "s/orca/${username}/g" ./modules/system/impermanence.nix
 echo
@@ -314,11 +314,13 @@ if [ "$encryptChoice" = true ]; then
   echo
   echo "Updating hostname in flake.nix..."
   sed -i "s/Finn/${hostname}/g" ./flake.nix
+  sed -i "s/Finn/${hostname}/g" ./hosts/${hostname}/configuration.nix
 else
   cp -r -v ./hosts/Jake ./hosts/${hostname}
   echo
   echo "Updating hostname in flake.nix..."
   sed -i "s/Finn/${hostname}/g" ./flake.nix
+  sed -i "s/Finn/${hostname}/g" ./hosts/${hostname}/configuration.nix
 fi
 echo
 
@@ -333,40 +335,41 @@ echo
 
 echo "========================================================================="
 echo "Wiping $diskDesc, creating partitions, then mounting them..."
-echo "> nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount /flake/hosts/${hostname}/disk-config.nix"
+echo "> sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount /flake/hosts/${hostname}/disk-config.nix"
 echo 
-nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount /flake/hosts/${hostname}/disk-config.nix
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount /flake/hosts/${hostname}/disk-config.nix
 
 echo "========================================================================="
 echo "Initializing default hardware-configuration.nix..."
-echo "nixos-generate-config --no-filesystems --root /mnt"
+echo "> sudo nixos-generate-config --no-filesystems --root /mnt"
 echo 
-nixos-generate-config --no-filesystems --root /mnt
+sudo nixos-generate-config --no-filesystems --root /mnt
 
 echo "========================================================================="
 echo "copying install files..."
-echo "mkdir -p /mnt/persist/users/${username}" 
-echo "cp -r /flake /mnt/persist/home/${username}/"
-echo "mv /mnt/persist/home/${username}/flake /mnt/persist/home/${username}/.flake"
-echo "cp /mnt/etc/nixos/hardware-configuration.nix /mnt/persist/home/${username}/.flake/hosts/${hostname}/hardware-configuration.nix"
+echo "> sudo mkdir -p /mnt/persist/users/${username}" 
+echo "> sudo cp -r /flake /mnt/persist/home/${username}/"
+echo "> sudo mv /mnt/persist/home/${username}/flake /mnt/persist/home/${username}/.flake"
+echo "> sudo cp /mnt/etc/nixos/hardware-configuration.nix /mnt/persist/home/${username}/.flake/hosts/${hostname}/hardware-configuration.nix"
 echo 
 
-cp -r /flake /mnt/persist/home/${username}/
-mv /mnt/persist/home/${username}/flake /mnt/persist/home/${username}/.flake
-cp /mnt/etc/nixos/hardware-configuration.nix /mnt/persist/home/${username}/.flake/hosts/${hostname}/
+sudo mkdir -p /mnt/persist/users/${username}
+sudo cp -r ~/NixDots2.0 /mnt/persist/home/${username}/
+sudo mv /mnt/persist/home/${username}/NixDots2.0 /mnt/persist/home/${username}/.flake
+sudo cp /mnt/etc/nixos/hardware-configuration.nix /mnt/persist/home/${username}/.flake/hosts/${hostname}/
 
 echo "========================================================================="
 echo "copying dotfiles..."
-echo "cp -r /flake/.config /mnt/persist/users/${username}/"
+echo "cp -r ./.config /mnt/persist/users/${username}/"
 echo
-mkdir -p /mnt/persist/users/${username}
-cp -r /flake/.config /mnt/persist/users/${username}/
+
+sudo cp -r ./.config /mnt/persist/users/${username}/
 
 echo "========================================================================="
 echo "installing nixos..."
-echo "nixos-install --flake /mnt/persist/users/${username}/.flake#${hostname}"
+echo "sudo nixos-install --flake /mnt/persist/users/${username}/.flake#${hostname}"
 echo
-nixos-install --flake /mnt/persist/users/${username}/.flake#${hostname}
+sudo nixos-install --flake /mnt/persist/users/${username}/.flake#${hostname}
 
 echo "========================================================================="
 echo "copying persist files..."
@@ -384,14 +387,14 @@ echo
 mkdir -p /mnt/persist/.rootfs/etc
 cp /mnt/etc/shadow /mnt/persist/.rootfs/etc/
 if [ -d /mnt/etc/ssh ]; then
-  cp -r /mnt/etc/ssh /mnt/persist/.rootfs/etc/
+  sudo cp -r /mnt/etc/ssh /mnt/persist/.rootfs/etc/
   echo "found /mnt/etc/ssh and copied it to /mnt/persist/.rootfs/etc/"
 else 
   echo "/mnt/etc/ssh not found"
 fi
 
 if [ -f /mnt/etc/machine-id ]; then
-  cp /mnt/etc/machine-id /mnt/persist/.rootfs/etc/
+  sudo cp /mnt/etc/machine-id /mnt/persist/.rootfs/etc/
   echo "found /mnt/etc/machine-id and copied it to /mnt/persist/.rootfs/etc/"
 else
   echo "/mnt/etc/machine-id not found"
