@@ -298,7 +298,7 @@ echo
 
 echo "Thinking... reading... writing... copying..."
 echo "Applying username..."
-mv ./users/orca ./users/${username}
+cp -r ./users/orca/* ./users/${username}
 sed -i "s/orca/${username}/g" ./users/${username}/user.nix
 sed -i "s/orca/${username}/g" ./users/default.nix
 sed -i "s/orca/${username}/g" ./modules/system/impermanence.nix
@@ -310,7 +310,7 @@ echo
 
 echo "Applying hostname with encryption choice..."
 if [ "$encryptChoice" = true ]; then
-  cp -r -v ./hosts/Finn ./hosts/${hostname}
+  cp -r -v ./hosts/Finn/* ./hosts/${hostname}
   echo
   echo "Updating hostname in flake.nix..."
   sed -i "s/Finn/${hostname}/g" ./flake.nix
@@ -347,16 +347,14 @@ sudo nixos-generate-config --no-filesystems --root /mnt
 
 echo "========================================================================="
 echo "copying install files..."
-echo "> sudo mkdir -p /mnt/persist/users/${username}" 
-echo "> sudo cp -r /flake /mnt/persist/home/${username}/"
-echo "> sudo mv /mnt/persist/home/${username}/flake /mnt/persist/home/${username}/.flake"
+echo "> sudo mkdir -p /mnt/persist/users/${username}/.flake" 
+echo "> sudo cp -r ~/NixDots2.0/* /mnt/persist/users/${username}/.flake"
 echo "> sudo cp /mnt/etc/nixos/hardware-configuration.nix /mnt/persist/home/${username}/.flake/hosts/${hostname}/hardware-configuration.nix"
 echo 
 
-sudo mkdir -p /mnt/persist/users/${username}
-sudo cp -r ~/NixDots2.0 /mnt/persist/home/${username}/
-sudo mv /mnt/persist/home/${username}/NixDots2.0 /mnt/persist/home/${username}/.flake
-sudo cp /mnt/etc/nixos/hardware-configuration.nix /mnt/persist/home/${username}/.flake/hosts/${hostname}/
+sudo mkdir -p /mnt/persist/users/${username}/.flake
+sudo cp -r ~/NixDots2.0/* /mnt/persist/users/${username}/.flake
+sudo cp /mnt/etc/nixos/hardware-configuration.nix /mnt/persist/users/${username}/.flake/hosts/${hostname}/
 
 echo "========================================================================="
 echo "copying dotfiles..."
