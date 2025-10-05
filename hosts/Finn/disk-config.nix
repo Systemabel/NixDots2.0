@@ -29,7 +29,7 @@
             size = "100%";
             label = "luks";
             content = {
-              type = "luks2";
+              type = "luks";
               name = "cryptroot";
               content = {
                 type = "btrfs";
