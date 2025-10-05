@@ -297,35 +297,31 @@ echo "Continue?"; read
 echo
 
 echo "Thinking... reading... writing... copying..."
+echo
 echo "Applying username..."
-cp -r ./users/orca/* ./users/${username}
+mkdir users/${username}
+cp -r -v users/orca/* users/${username}
 sed -i "s/orca/${username}/g" ./users/${username}/user.nix
 sed -i "s/orca/${username}/g" ./users/default.nix
 sed -i "s/orca/${username}/g" ./modules/system/impermanence.nix
-echo
-
-echo "Applying timezone..."
-sed -i "s|^\s*time\.timeZone = \".*\";|  time.timeZone = \"$timezone\";|" ./hosts/${hostname}/configuration.nix
-echo 
 
 echo "Applying hostname with encryption choice..."
+mkdir hosts/${hostname}
 if [ "$encryptChoice" = true ]; then
-  cp -r -v ./hosts/Finn/* ./hosts/${hostname}
-  echo
-  echo "Updating hostname in flake.nix..."
-  sed -i "s/Finn/${hostname}/g" ./flake.nix
-  sed -i "s/Finn/${hostname}/g" ./hosts/${hostname}/configuration.nix
+  cp -r -v hosts/Finn/* hosts/${hostname}
 else
-  cp -r -v ./hosts/Jake ./hosts/${hostname}
-  echo
-  echo "Updating hostname in flake.nix..."
-  sed -i "s/Finn/${hostname}/g" ./flake.nix
-  sed -i "s/Finn/${hostname}/g" ./hosts/${hostname}/configuration.nix
+  cp -r -v hosts/Jake/* hosts/${hostname}
 fi
-echo
+echo "Updating hostname references throughout flake..."
+  sed -i "s/Finn/${hostname}/g" flake.nix
+  sed -i "s/Finn/${hostname}/g" hosts/${hostname}/configuration.nix
+
+echo "Applying timezone..."
+sed -i "s|^\s*time\.timeZone = \".*\";|  time.timeZone = \"$timezone\";|" hosts/${hostname}/configuration.nix
+echo 
 
 echo "Applying drive label to disk-configuration.nix"
-sed -i "s|device = \"/dev/disk/by-id/[^\"]*\"|device = \"/dev/disk/by-id/${diskChoice}\"|" ./hosts/${hostname}/disk-config.nix
+sed -i "s|device = \"/dev/disk/by-id/[^\"]*\"|device = \"/dev/disk/by-id/${diskChoice}\"|" hosts/${hostname}/disk-config.nix
 
 echo "...done!"
 echo "Created the user ${username}, created the host ${hostname} with respect"
@@ -353,20 +349,24 @@ echo "> sudo cp /mnt/etc/nixos/hardware-configuration.nix /mnt/persist/home/${us
 echo 
 
 sudo mkdir -p /mnt/persist/users/${username}/.flake
-sudo cp -r ~/NixDots2.0/* /mnt/persist/users/${username}/.flake
+sudo cp -r ~/NixDots2.0/* /mnt/persist/users/${username}/.flake/
 sudo cp /mnt/etc/nixos/hardware-configuration.nix /mnt/persist/users/${username}/.flake/hosts/${hostname}/
 
 echo "========================================================================="
 echo "copying dotfiles..."
-echo "cp -r ./.config /mnt/persist/users/${username}/"
+echo "> sudo cp -r ./.config /mnt/persist/users/${username}/"
 echo
 
 sudo cp -r ./.config /mnt/persist/users/${username}/
 
 echo "========================================================================="
 echo "installing nixos..."
+echo "cd /mnt/persist/users/${username}/.flake"
+echo "git add ."
 echo "sudo nixos-install --flake /mnt/persist/users/${username}/.flake#${hostname}"
 echo
+cd /mnt/persist/users/${username}/.flake
+git add .
 sudo nixos-install --flake /mnt/persist/users/${username}/.flake#${hostname}
 
 echo "========================================================================="
