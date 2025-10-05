@@ -2,8 +2,9 @@
   imports = [
     ./boot.nix
     ./hardware
-    ./impermanence.nix
     ./env.nix
+    ./persist-shadow.nix
+    ./persist.nix
   ];
 }
 # [ ] double-check all core functionality:

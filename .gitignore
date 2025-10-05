@@ -1,5 +1,9 @@
 .Trash-1000/
-configurations.code-workspace
+
 TODO.md
-master-list.yaml
+
+
+!users/template/
+!users/default.nix
+
 .config/sunsetr/geo.toml

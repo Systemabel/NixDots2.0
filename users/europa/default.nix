@@ -1,8 +1,9 @@
 {...}: {
   imports = [
-    ./defaults.nix
     ./keymap.nix
+    ./persist.nix
     ./user-apps.nix
+    ./user-env.nix
     ./user.nix
   ];
 }

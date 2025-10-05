@@ -1,0 +1,73 @@
+{...}: {
+  environment.persistence = {
+    "/persist" = {
+      hideMounts = true;
+      users.europa = {
+        directories = [
+          ".cache/nix-index"
+          ".cache/mozilla"
+          ".config/anyrun"
+          ".config/DankMaterialShell"
+          ".config/fuzzel"
+          ".config/ghostty"
+          ".config/helix"
+          ".config/hypr"
+          ".config/keepassxc"
+          ".config/matugen"
+          ".config/niri"
+          ".config/nix-search-tv"
+          ".config/noctalia"
+          ".config/pipewire"
+          ".config/Plasticity"
+          ".config/quickshell"
+          ".config/spotify"
+          ".config/sunsetr"
+          ".config/television"
+          ".config/tmux"
+          ".config/vesktop"
+          ".config/VSCodium"
+          ".config/xdg-desktop-portal-termfilechooser"
+          ".config/yazi"
+          ".git"
+          ".local/share/color-schemes"
+          ".local/share/dbus-1"
+          ".local/share/gk"
+          # ".local/share/Steam"
+          ".local/share/Trash"
+          ".local/state/clipvault"
+          ".local/state/nix"
+          ".local/state/wireplumber"
+          ".mozilla"
+          ".pki"
+          ".plasticity"
+          ".ssh"
+          ".steam"
+          ".vscode-oss"
+          "archroot"
+          "Documents"
+          "flake"
+          "Games"
+          "Pictures/Wallpapers"
+        ];
+        files = [
+          ".config/dolphinrc"
+          ".config/katerc"
+          ".config/kiorc"
+          ".config/KleverNotesrc"
+          ".config/Preferences"
+          ".config/starship.toml"
+          ".local/share/clipvault.db"
+          ".local/share/recently-used.xbel"
+          ".local/share/user-places.xbel"
+          ".bash_history"
+          ".face"
+          ".gitconfig"
+          ".gitignore"
+          ".steampath"
+          ".steampid"
+          ".zsh_history"
+        ];
+      };
+    };
+  };
+}

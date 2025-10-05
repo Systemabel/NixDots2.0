@@ -1,7 +1,7 @@
 {
   description = ''
     This flake is a big combination of various tutorial flakes. See the
-    readme!
+    readme.md.
   '';
 
   inputs = {
@@ -41,10 +41,10 @@
       forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
     overlays = import ./overlays {inherit inputs;};
     nixosConfigurations = {
-      Finn = nixpkgs.lib.nixosSystem {
+      Jupiter = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./hosts/Finn
+          ./hosts/Jupiter
           inputs.disko.nixosModules.disko
           inputs.impermanence.nixosModules.impermanence
           inputs.niri-git.nixosModules.niri

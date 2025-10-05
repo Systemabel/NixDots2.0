@@ -40,15 +40,13 @@ in {
 
     enabledExtensions = with spicePkgs.extensions; [
       betterGenres
-      fullAppDisplay
-      hidePodcasts
-      historyShortcut
+      history
       keyboardShortcut
       lastfm
       listPlaylistsWithSong
       oldLikeButton
-      oldSidebar
-      playlistIcons
+      # oldSidebar
+      # playlistIcons
       playlistIntersection
       shuffle
     ];
