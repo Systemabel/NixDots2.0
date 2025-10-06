@@ -20,18 +20,13 @@
 
 ## What's Not Working:
 
-- Luks encryption has not been setup yet, nor has secrets management. Coming
-  soon!
 - There are some small bugs
   - Dolphin won't open any file or populate a menu
     list without basically 5-10 other seemingly random kdePackages (not random,
     but too much of a hassle to keep track of of, and I've quickly started getting
     used to yazi for all that).
-  - some config files seem to not be applying correctly (maybe I've lost track
-    of some options I set somewhere in the flake).
   - unconfirmed (not configured) operation of screenshots, screen recording,
-    sleep, hibernation, & session lock screen. And I really need the numpad on
-    regreet, so that's a WIP.
+    hibernation,. And I really need the numpad on regreet, so that's a WIP.
 
 ## This flake is a big combination of various tutorial flakes
 
@@ -136,11 +131,13 @@ frequently.
 - [x] de-gnomify desktop environment
 - [x] custom kernel patches (settled with cachyos-kernel-lto from chaotic)
 - [x] escape home manager
-- [ ] set up encryption (and decryption options) <on its way
+- [x] set up encryption
+- [ ] implement secrets
 - [ ] shell: [quickshell](https://github.com/quickshell-mirror/quickshell) (<--progress)
 - [ ] dynamic color theming (<--also progress) <will come with quickshell
 - [ ] incorporate local ai tools
 - [ ] create cohesion of all the parts! (pretty close)
+- [ ] create second entertainment user for games and streaming
 - [x] get more sleep...
 
 I would consider this flake in its late alpha stage. Bootable, workable, but

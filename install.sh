@@ -5,6 +5,7 @@ exec > >(tee -a ./install.log) 2>&1
 display_choices() {
   echo "========================================================================="
   echo "Chosen username: " "$username"
+  echo "Chosen password: " "$hashedPassword"
   echo "Chosen hostname: " "$hostname"
   echo "Time zone: " "$timezone"
   echo "Encryption: " "$encryptDesc"
@@ -127,9 +128,19 @@ get_hostname() {
   done
   clear 
 }
+get_password() {
+  display_choices
+  echo "Please select a password"
+  echo "This will be encrypted with sha-512 encryption then applied to "
+  echo "initialHashedPassword in your user profile."
+  echo "once you're booted into your installation, you can always change your"
+  echo "password with 'pw'"
+  echo
+  hashedPassword=$(mkpasswd -m SHA-512 -s)
+}
 get_timezone() {
   display_choices
-  echo "Next, running tzselect to assign timezone to your flake"
+  echo "Running tzselect to assign timezone to your flake"
   timezone=$(tzselect)
   clear
 }
@@ -182,8 +193,9 @@ ask_for_changes() {
   while true; do
     display_choices
     echo "Check your configuration above. Is there anything you'd like to change?"
-    echo
+    echo 
     echo "1) Username"
+    echo "2) User password"
     echo "2) Hostname"
     echo "3) Timezone"
     echo "4) Encryption enrollment"
@@ -201,17 +213,21 @@ ask_for_changes() {
       ;;
       [2]) 
         clear
+        get_password
+      ;;
+      [3]) 
+        clear
         get_hostname
         ;;
-      [3]) 
+      [4]) 
         clear
         get_timezone
         ;;
-      [4])
+      [5])
         clear
         get_encryption_choice
       ;;
-      [5])
+      [6])
         clear
         get_disk_choice
       ;;
@@ -231,6 +247,7 @@ echo "A few questions... press any button to continue"; read
 clear
 
 get_username
+get_password
 get_hostname
 get_timezone
 get_encryption_choice
@@ -256,8 +273,9 @@ echo "Press any button to continue, or ctrl+C to exit without making changes."
 echo "Continue?"; read
 
 echo "Thinking... reading... writing... copying..."
-echo
-sleep 1s "========================================================================="
+
+sleep 1s 
+echo "========================================================================="
 echo "### Applying username..."
   mkdir users/"$username"
 echo "users folder:" && ls users
@@ -278,8 +296,16 @@ echo
   sed -i "s|{imports = \[\./.*\];}|{imports = [./$username];}|" users/default.nix
     echo "## Lines changed in users/default.nix:"
     grep -n "$username" users/default.nix
-echo
-sleep 1s "========================================================================="
+
+sleep 1s 
+echo "========================================================================="
+echo "### Applying hashed password..."
+  sed -i "s|^\s*initialHashedPassword = \".*\";|      initialHashedPassword = \"$hashedPassword\";|" users/"$hostname"/user.nix
+    echo "## Lines changed in users/$hostname/user.nix"
+    grep -n "$hashedPassword" users/"$hostname"/user.nix
+
+sleep 1s 
+echo "========================================================================="
 echo "### Applying hostname with encryption choice..."
 echo
   mkdir hosts/"$hostname"
@@ -291,6 +317,7 @@ echo
     echo "hosts folder:" && ls hosts
 echo
     echo "hosts/$hostname folder:" && ls hosts/"$hostname"
+
 sleep 1s
 echo
 echo "### Updating hostname references throughout flake..."
@@ -303,14 +330,15 @@ echo
     echo "## Lines changed in hosts/$hostname/configuration.nix"
     grep -n "$hostname" hosts/"$hostname"/configuration.nix
 
-echo
-sleep 1s "========================================================================="
+sleep 1s 
+echo "========================================================================="
 echo "### Applying timezone..."
   sed -i "s|^\s*time\.timeZone = \".*\";|  time.timeZone = \"$timezone\";|" hosts/"$hostname"/configuration.nix
     echo "## Lines changed in hosts/$hostname/configuration.nix"
     grep -n "$timezone" hosts/"$hostname"/configuration.nix
-echo
-sleep 1s "========================================================================="
+
+sleep 1s 
+echo "========================================================================="
 echo "### Applying drive label to disk-config.nix"
 echo
   sed -i "s|^\s*device = \"/dev/disk/by-id/.*\"|      device = \"/dev/disk/by-id/$diskChoice\"|" hosts/"$hostname"/disk-config.nix
@@ -363,6 +391,7 @@ echo "sudo nixos-install --flake /mnt/persist/home/$username/.flake#$hostname"
   sudo nixos-install --flake /mnt/persist/home/"$username"/.flake#"$hostname"
   sudo mv /mnt/persist/home/"$username"/.flake/.git-backup /mnt/persist/home/"$username"/.flake/.git
 
+sleep 1s
 echo "========================================================================="
 echo "### copying persist files..."
 echo "> sudo mkdir -p /mnt/persist/.rootfs/etc"

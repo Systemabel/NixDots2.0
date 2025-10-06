@@ -5,6 +5,7 @@ exec > >(tee -a ./install.log) 2>&1
 display_choices() {
   echo "========================================================================="
   echo "Chosen username: " "$username"
+  echo "Chosen password: " "$hashedPassword"
   echo "Chosen hostname: " "$hostname"
   echo "Time zone: " "$timezone"
   echo "Encryption: " "$encryptDesc"
@@ -127,6 +128,16 @@ get_hostname() {
   done
   clear 
 }
+get_password() {
+  display_choices
+  echo "Please select a password"
+  echo "This will be encrypted with sha-512 encryption then applied to "
+  echo "initialHashedPassword in your user profile."
+  echo "once you're booted into your installation, you can always change your"
+  echo "password with 'pw'"
+  echo
+  hashedPassword=$(mkpasswd -m SHA-512 -s)
+}
 get_timezone() {
   display_choices
   echo "Next, running tzselect to assign timezone to your flake"
@@ -182,8 +193,9 @@ ask_for_changes() {
   while true; do
     display_choices
     echo "Check your configuration above. Is there anything you'd like to change?"
-    echo
+    echo 
     echo "1) Username"
+    echo "2) User password"
     echo "2) Hostname"
     echo "3) Timezone"
     echo "4) Encryption enrollment"
@@ -201,17 +213,21 @@ ask_for_changes() {
       ;;
       [2]) 
         clear
+        get_password
+      ;;
+      [3]) 
+        clear
         get_hostname
         ;;
-      [3]) 
+      [4]) 
         clear
         get_timezone
         ;;
-      [4])
+      [5])
         clear
         get_encryption_choice
       ;;
-      [5])
+      [6])
         clear
         get_disk_choice
       ;;
@@ -279,6 +295,14 @@ echo
     echo "## Lines changed in users/default.nix:"
     grep -n "$username" users/default.nix
 echo
+
+sleep 1s 
+echo "========================================================================="
+echo "### Applying hashed password..."
+  sed -i "s|^\s*initialHashedPassword = \".*\";|      initialHashedPassword = \"$hashedPassword\";|" users/"$hostname"/user.nix
+    echo "## Lines changed in users/$hostname/user.nix"
+    grep -n "$hashedPassword" users/"$hostname"/user.nix
+
 sleep 1s "========================================================================="
 echo "### Applying hostname with encryption choice..."
 echo
