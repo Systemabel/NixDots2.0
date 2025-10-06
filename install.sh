@@ -257,26 +257,31 @@ echo "Continue?"; read
 
 echo "Thinking... reading... writing... copying..."
 echo
-echo "========================================================================="
+sleep 1 "========================================================================="
 echo "### Applying username..."
   mkdir users/"$username"
+echo "users folder:" && ls users
+echo
   cp -r -v users/template/* users/"$username"
-  echo "users folder:" && ls users
+echo
   echo "users/$username folder:" && ls users/"$username"
 echo
   sed -i "s/template/$username/g" users/"$username"/user.nix
+echo
     echo "## Lines changed in users/$username/user.nix:"
     grep -n "$username" users/"$username"/user.nix
+echo
   sed -i "s|users\.[^ ]* = {|users.$username = {|" users/"$username"/persist.nix
     echo "## Lines changed in users/$username/persist.nix"
     grep -n "$username" users/"$username"/persist.nix
+echo
   sed -i "s|{imports = \[\./.*\];}|{imports = [./$username];}|" users/default.nix
     echo "## Lines changed in users/default.nix:"
     grep -n "$username" users/default.nix
-
-
-echo "========================================================================="
+echo
+sleep 1 "========================================================================="
 echo "### Applying hostname with encryption choice..."
+echo
   mkdir hosts/"$hostname"
   if [ "$encryptChoice" = true ]; then
     cp -v hosts/Jupiter/* hosts/"$hostname"
@@ -284,9 +289,12 @@ echo "### Applying hostname with encryption choice..."
     cp -v hosts/Saturn/* hosts/"$hostname"
   fi
     echo "hosts folder:" && ls hosts
+echo
     echo "hosts/$hostname folder:" && ls hosts/"$hostname"
-
+sleep 1
+echo
 echo "### Updating hostname references throughout flake..."
+echo
   sed -i "s|[^ ]* = nixpkgs\.lib\.nixosSystem {|$hostname = nixpkgs.lib.nixosSystem {|" flake.nix
   sed -i "s|\./hosts/.*|\./hosts/$hostname|" flake.nix
     echo "## Lines changed in flake.nix"
@@ -294,38 +302,42 @@ echo "### Updating hostname references throughout flake..."
   sed -i "s|^\s*networking\.hostName = \".*\";|  networking.hostName = \"$hostname\";|" hosts/"$hostname"/configuration.nix
     echo "## Lines changed in hosts/$hostname/configuration.nix"
     grep -n "$hostname" hosts/"$hostname"/configuration.nix
-echo
 
-echo "========================================================================="
+echo
+sleep 1 "========================================================================="
 echo "### Applying timezone..."
   sed -i "s|^\s*time\.timeZone = \".*\";|  time.timeZone = \"$timezone\";|" hosts/"$hostname"/configuration.nix
     echo "## Lines changed in hosts/$hostname/configuration.nix"
     grep -n "$timezone" hosts/"$hostname"/configuration.nix
-
-
-echo "========================================================================="
-echo "### Applying drive label to disk-configuration.nix"
+echo
+sleep 1 "========================================================================="
+echo "### Applying drive label to disk-config.nix"
+echo
   sed -i "s|^\s*device = \"/dev/disk/by-id/.*\"|      device = \"/dev/disk/by-id/$diskChoice\"|" hosts/"$hostname"/disk-config.nix
     echo "## Lines changed in hosts/$hostname/configuration.nix"
-    grep -n "$diskChoice" host/"$hostname"/disk-config.nix
+    grep -n "$diskChoice" hosts/"$hostname"/disk-config.nix
 
 echo "...done!"
 echo "Created the user $username, created the host $hostname with respect"
 echo "to your chosen encryption settings, and applied the selected disk-id in"
 echo "$hostname/disk-config.nix."
 
+sleep 1
 echo "========================================================================="
 echo "### Wiping $diskDesc, creating partitions, then mounting them..."
 echo "> sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount ~/FlakenDots/hosts/$hostname/disk-config.nix"
   sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount ~/FlakenDots/hosts/"$hostname"/disk-config.nix
     echo "mounted btrfs: " && mount | grep btrfs
 
+sleep 1
 echo "========================================================================="
 echo "### Initializing default hardware-configuration.nix..."
 echo "> sudo nixos-generate-config --root /mnt --no-filesystems" 
+echo
   sudo nixos-generate-config --root /mnt --no-filesystems
     echo "/mnt/etc/nixos folder:" && ls /mnt/etc/nixos
 
+sleep 1
 echo "========================================================================="
 echo "### copying install files..."
 echo "> sudo mkdir -p /mnt/persist/home/$username/.flake" 
@@ -333,20 +345,21 @@ echo "> sudo cp -r ~/FlakenDots/* /mnt/persist/home/$username/.flake"
 echo "> sudo cp /mnt/etc/nixos/hardware-configuration.nix /mnt/persist/home/$username/.flake/hosts/$hostname/hardware-configuration.nix"
   sudo mkdir -p /mnt/persist/home/"$username"/.flake
   sudo cp -r -v ~/FlakenDots/* /mnt/persist/home/"$username"/.flake/
+sleep 1
   sudo cp /mnt/etc/nixos/hardware-configuration.nix /mnt/persist/home/"$username"/.flake/hosts/"$hostname"/
 
+sleep 1
 echo "========================================================================="
 echo "### copying dotfiles..."
-echo "> sudo cp -r ./.config /mnt/persist/home/$username/"
-  sudo cp -r -v ./.config /mnt/persist/home/"$username"/
+echo "> sudo cp -r .config /mnt/persist/home/$username/"
+  sudo cp -r -v .config /mnt/persist/home/"$username"/
 
+sleep 1
 echo "========================================================================="
 echo "installing nixos..."
 echo "cd /mnt/persist/home/$username/.flake"
-echo "git add ."
 echo "sudo nixos-install --flake /mnt/persist/home/$username/.flake#$hostname"
   cd /mnt/persist/home/"$username"/.flake
-  git add .
   sudo nixos-install --flake /mnt/persist/home/"$username"/.flake#"$hostname"
 
 echo "========================================================================="
