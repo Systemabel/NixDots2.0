@@ -129,6 +129,7 @@ with pkgs; {
       bat
       btop
       curl
+      dragon-drop
       eza
       fastfetch
       htop
@@ -141,6 +142,7 @@ with pkgs; {
       trash-cli
       wl-clipboard
       yazi
+      yaziPlugins.shart-enter
     ];
     terminal = [
       ghostty
