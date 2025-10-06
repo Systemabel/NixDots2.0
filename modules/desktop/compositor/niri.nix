@@ -4,10 +4,11 @@
   lib,
   ...
 }: {
-  nixpkgs.overlays = [inputs.niri-git.overlays.niri];
+  # nixpkgs.overlays = [inputs.niri-git.overlays.niri];
   programs.niri = {
     enable = lib.mkDefault true;
-    package = pkgs.niri-unstable;
+    # package = pkgs.niri-unstable;
+    package = pkgs.niri;
   };
 
   services.xserver = {
