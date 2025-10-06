@@ -1,6 +1,6 @@
 {lib, ...}: {
   #  Reset root subvolume on boot
-  boot.initrd.postDeviceCommands = lib.mkAfter ''
+  boot.initrd.postResumeCommands = lib.mkAfter ''
     echo "!! starting impermanence script..."
 
     mkdir -p /mnt
