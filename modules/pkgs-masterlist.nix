@@ -142,7 +142,7 @@ with pkgs; {
       trash-cli
       wl-clipboard
       yazi
-      yaziPlugins.shart-enter
+      yaziPlugins.smart-enter
     ];
     terminal = [
       ghostty
