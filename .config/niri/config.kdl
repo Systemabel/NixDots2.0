@@ -1,11 +1,7 @@
 // ** Env **
 environment {
-    DISPLAY ":0"
-    "ELECTRO_OZONE_PLATFORM_HINT" "auto"
-    "QT_QPA_PLATFORM" "wayland"
-    TERM "ghostty"
-    EDITOR "nvim"
-    qsConfig "noctalia-shell"
+  "QT_QPA_PLATFORM" "wayland"
+  qsConfig "noctalia-shell"
 }
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
