@@ -13,13 +13,16 @@
     stays true after I do a totally fresh install.
 - Currently still using xdp-gtk
   - using **xdg-desktop-portal-termfilechooser** and **-wlr**
-  - [keepassxc](https://github.com/keepassxreboot/keepassxc) instead of
-    gnome-keyring, as mentioned above
   - See `modules/pkgs-masterlist.nix` and `modules/programs-masterlist.nix` to
     see nearly everything that's included in this flake.
 
 ## What's Not Working:
 
+- [keepassxc](https://github.com/keepassxreboot/keepassxc) instead of
+  gnome-keyring. The first instance that I've found where the secret service was
+  initiated (vscodium with a git push), it couldn't find any secret service
+  on the system. Though, it seems keepassxc is configured for it. I'm continuing
+  to look into this issue
 - There are some small bugs
   - Dolphin won't open any file or populate a menu
     list without basically 5-10 other seemingly random kdePackages (not random,
@@ -73,12 +76,6 @@ like using it**. From what I've gathered, it basically provides an **alternative
 way to do all the same things that nixos does**, just with different syntax. And
 that's in combination with adding the capability of managing .config files in a
 sort of **walled-garden** manner.
-
-> That all said, it's a standard, and I'm a beginner user of nixos and flakes,
-> so what do I know?
-
-Other than that, I'm aiming to avoid c++ when there's a proper rust or go
-alternative that's receiving regular development. It's a preference.
 
 ### Design choices
 
