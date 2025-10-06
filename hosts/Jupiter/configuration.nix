@@ -21,12 +21,6 @@
   # enabling encryption!
   boot.initrd = {
     kernelModules = ["amdgpu"];
-    luks.devices = {
-      cryptroot = {
-        device = "/dev/disk/by-partlabel/luks";
-        allowDiscards = true;
-      };
-    };
   };
 
   # My desktop computer has a particular motherboard with pcie devices that wake

@@ -2,8 +2,9 @@
 
 TODO.md
 
-
+users/
 !users/template/
 !users/default.nix
 
 .config/sunsetr/geo.toml
+install.log

@@ -41,10 +41,10 @@
       forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
     overlays = import ./overlays {inherit inputs;};
     nixosConfigurations = {
-      Jupiter = nixpkgs.lib.nixosSystem {
+      Saturn = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./hosts/Jupiter
+          ./hosts/Saturn
           inputs.disko.nixosModules.disko
           inputs.impermanence.nixosModules.impermanence
           inputs.niri-git.nixosModules.niri

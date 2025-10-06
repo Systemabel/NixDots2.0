@@ -3,7 +3,7 @@
   boot.initrd.postResumeCommands = lib.mkAfter ''
 
     mkdir /mnt
-    mount /dev/disk/by-partlabel/disk-main-root /mnt
+    mount -t btrfs /dev/mapper/cryptroot /mnt
 
     if [[ -e /mnt/@ ]]; then
       mkdir -p /mnt/@snapshots/rootfs

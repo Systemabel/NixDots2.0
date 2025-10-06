@@ -373,7 +373,10 @@ echo "> sudo rsync -vh /mnt/etc/machine-id /mnt/persist/.rootfs/etc/"
   sudo rsync -vh /mnt/etc/shadow /mnt/persist/.rootfs/etc/
   sudo rsync -rvh /mnt/etc/ssh /mnt/persist/.rootfs/etc/
   sudo rsync -vh /mnt/etc/machine-id /mnt/persist/.rootfs/etc/
-  sudo chown -R "$username":"$username" /mnt/persist/home/"$username"
+  mkdir ~/archmnt
+  sudo mount -o subvol=@home,noatime,compress=zstd,autodefrag /dev/nvme0n1p3 ~/archmnt
+  sudo rsync -rvh ~/archmnt/dotfiles/ /mnt/persist/home/"${username}"
+  sudo chown -R "${username}":"${username} /mnt/persist/home/"${username}"
 echo "========================================================================="
 echo "                              All done!"
 echo "========================================================================="

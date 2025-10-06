@@ -25,48 +25,43 @@
               mountOptions = ["umask=0077"];
             };
           };
-          luks = {
+          root = {
             size = "100%";
-            label = "luks";
             content = {
-              type = "luks";
-              name = "cryptroot";
-              content = {
-                type = "btrfs";
-                extraArgs = ["-L" "nixos" "-f"];
-                subvolumes = {
-                  "@" = {
-                    mountpoint = "/";
-                    mountOptions = ["compress=zstd" "noatime" "autodefrag"];
-                  };
-                  "@home" = {
-                    mountpoint = "/home";
-                    mountOptions = ["compress=zstd" "noatime" "autodefrag"];
-                  };
-                  "@nix" = {
-                    mountpoint = "/nix";
-                    mountOptions = ["compress=zstd" "noatime" "autodefrag"];
-                  };
-                  "@persist" = {
-                    mountpoint = "/persist";
-                    mountOptions = ["compress=zstd" "noatime" "autodefrag"];
-                  };
-                  "@log" = {
-                    mountpoint = "/var/log";
-                    mountOptions = ["compress=zstd" "noatime" "autodefrag"];
-                  };
-                  "@lib" = {
-                    mountpoint = "/var/lib";
-                    mountOptions = ["compress=zstd" "noatime" "autodefrag"];
-                  };
-                  "@swap" = {
-                    mountpoint = "/persist/swap";
-                    mountOptions = ["noatime" "x-systemd.requires-mounts-for=/persist"];
-                  };
-                  "@snapshots" = {
-                    mountpoint = "/.snapshots";
-                    mountOptions = ["noatime" "compress=zstd" "autodefrag"];
-                  };
+              type = "btrfs";
+              extraArgs = ["-L" "nixos" "-f"];
+              subvolumes = {
+                "@" = {
+                  mountpoint = "/";
+                  mountOptions = ["compress=zstd" "noatime" "autodefrag"];
+                };
+                "@home" = {
+                  mountpoint = "/home";
+                  mountOptions = ["compress=zstd" "noatime" "autodefrag"];
+                };
+                "@nix" = {
+                  mountpoint = "/nix";
+                  mountOptions = ["compress=zstd" "noatime" "autodefrag"];
+                };
+                "@persist" = {
+                  mountpoint = "/persist";
+                  mountOptions = ["compress=zstd" "noatime" "autodefrag"];
+                };
+                "@log" = {
+                  mountpoint = "/var/log";
+                  mountOptions = ["compress=zstd" "noatime" "autodefrag"];
+                };
+                "@lib" = {
+                  mountpoint = "/var/lib";
+                  mountOptions = ["compress=zstd" "noatime" "autodefrag"];
+                };
+                "@swap" = {
+                  mountpoint = "/persist/swap";
+                  mountOptions = ["noatime" "x-systemd.requires-mounts-for=/persist"];
+                };
+                "@snapshots" = {
+                  mountpoint = "/.snapshots";
+                  mountOptions = ["noatime" "compress=zstd" "autodefrag"];
                 };
               };
             };
