@@ -10,6 +10,7 @@
     starship.enable = true;
     steam.enable = true;
     television.enable = true;
+    tmux.enable = true;
     zsh.enable = true;
   };
 }

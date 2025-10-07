@@ -56,6 +56,7 @@
           ".face"
           ".gitconfig"
           ".zsh_history"
+          ".zshrc"
         ];
       };
     };

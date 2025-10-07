@@ -137,7 +137,6 @@ with pkgs; {
       ripgrep
       skim
       tealdeer
-      tmux
       translate-shell
       trash-cli
       wl-clipboard

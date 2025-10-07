@@ -12,6 +12,10 @@
       vteIntegration = true;
       interactiveShellInit = ''
         eval "$(starship init zsh)"
+
+        if [ -x "$(command -v tmux)" ] && [ -n "$DISPLAY" ] && [ -z "$TMUX" ]; then
+          exec tmux new-session -A -s $USER >/dev/null 2>&1
+        fi
       '';
       # History
       histSize = 100000;
@@ -39,9 +43,11 @@
       };
       enableLsColors = true;
       setOptions = [
-        "SHARE_HISTORY"
-        "HIST_IGNORE_ALL_DUPS"
         "AUTO_CD"
+        "HIST_IGNORE_ALL_DUPS"
+        "HIST_IGNORE_DUPS"
+        "HIST_FIND_NO_DUPS"
+        "SHARE_HISTORY"
       ];
     };
   };
