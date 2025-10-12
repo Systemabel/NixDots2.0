@@ -7,7 +7,7 @@ with pkgs; {
       ddcutil
       mesa
       vulkan-tools
-      qmk
+      # qmk
       # note: services.nact.enable = true --> in config
     ];
     security = [
@@ -95,10 +95,10 @@ with pkgs; {
       # -- check if it has to do with the zram
       # TODO zen-browser
       firefox
-      kodi-wayland
-      kodiPackages.netflix
-      kodiPackages.steam-library
-      kodiPackages.steam-launcher
+      # kodi-wayland
+      # kodiPackages.netflix
+      # kodiPackages.steam-library
+      # kodiPackages.steam-launcher
       vesktop
     ];
     devTools = [
@@ -125,7 +125,7 @@ with pkgs; {
       protonup-rs
     ];
     cli = [
-      astroterm
+      # astroterm
       bat
       btop
       curl

@@ -2,7 +2,7 @@
   environment.persistence = {
     "/persist" = {
       hideMounts = true;
-      users.europa = {
+      users.titan = {
         directories = [
           # of course, our flake source location:
           ".flake"
