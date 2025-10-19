@@ -3,21 +3,20 @@ environment {
   "QT_QPA_PLATFORM" "wayland"
   qsConfig "noctalia-shell"
 }
-screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+screenshot-path "~/Media/Screencapture/Screenshot_%Y-%m-%d_%H-%M-%S.png"
 
 // ** Exec **
 spawn-sh-at-startup "qs -c $qsConfig &"
 spawn-sh-at-startup "wl-paste --watch clipvault store &"
 spawn-sh-at-startup "keepassxc"
+spawn-sh-at-startup "lact"
 spawn-sh-at-startup "sunsetr"
 spawn-sh-at-startup "niriswitcher"
 spawn-sh-at-startup "mako" // This isn't even configured and it's annoying, but
 // It's just for me right now while I'm configuring so that I don't miss 
 // notifications without having quickshell working how I like it
 
-spawn-sh-at-startup "hypridle" // This is handled by a systemd service - not anymore
-// TODO though I feel that it's preferred it's run at startup. I'll get to This
-// eventually.
+spawn-sh-at-startup "hypridle"
 
 // spawn-sh-at-startup "kded6 &"
 // spawn-sh-at-startup "kglobalaccel6 &"
@@ -365,9 +364,16 @@ binds {
     // mod+v { spawn-sh "clipvault list | fuzzel --dmenu | clipvault get | wl-copy"; }
     mod+v { spawn-sh "clipvault list | anyrun --plugins /run/current-system/sw/lib/libstdin.so | clipvault get | wl-copy"; }
 
+    // ** Screen Capture **
+    Print hotkey-overlay-title="screenshot: +ctrl full-screen; +alt window" { screenshot; }
+    alt+Print { screenshot-screen write-to-disk=false; }
+    ctrl+Print { screenshot-window write-to-disk=false; }
+    Super+R hotkey-overlay-title="Toggle Screen Recording" { spawn "~/.config/niri/screen-record.sh"; }    
+    
+    // [ ] screen-record command needs a separate script file for the command to work. I don't know why.
 
     // ** Application Launches **
-    mod+W hotkey-overlay-title="Launch Web-browser" { spawn "firefox"; }
+    mod+W hotkey-overlay-title="Launch Web-browser" { spawn "brave"; }
     mod+B hotkey-overlay-title="Launch file-Browser (yazi)" { spawn-sh "ghostty -e yazi"; }
     mod+T hotkey-overlay-title="Launch Terminal (ghostty)" { spawn "ghostty"; }
     mod+C hotkey-overlay-title="Launch vsCode" { spawn "codium"; }
