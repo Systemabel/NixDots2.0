@@ -5,8 +5,8 @@
     via
     # mgba
     plasticity
-    texliveFull
-    zathura
+    # texliveFull
+    # zathura
     # TODO check plasticity license will last through rebuilds
   ];
 }

@@ -3,6 +3,10 @@
   # TODO make lact an option
   services.lact.enable = true;
 
+  # AMD graphics card drivers:
+  boot.initrd.kernelModules = ["amdgpu"];
+  hardware.amdgpu.overdrive.enable = true; # specifically for lact and overclocking
+
   # brightness control driver setup
   hardware.i2c.enable = true;
   services.udev.packages = [pkgs.ddcutil];

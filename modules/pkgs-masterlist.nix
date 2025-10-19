@@ -93,13 +93,14 @@ with pkgs; {
     userApps = [
       # TODO servo # this one is pretty broken as of right now... won't build for some reason.
       # -- check if it has to do with the zram
-      # TODO zen-browser
       firefox
-      # kodi-wayland
-      # kodiPackages.netflix
-      # kodiPackages.steam-library
-      # kodiPackages.steam-launcher
+      brave
+      kodi-wayland
+      kodiPackages.netflix
+      kodiPackages.steam-library
+      kodiPackages.steam-launcher
       vesktop
+      mpv
     ];
     devTools = [
       vscodium
@@ -125,7 +126,7 @@ with pkgs; {
       protonup-rs
     ];
     cli = [
-      # astroterm
+      astroterm
       bat
       btop
       curl

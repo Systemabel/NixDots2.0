@@ -3,6 +3,7 @@
     bash.enable = true;
     fish.enable = true;
     gpu-screen-recorder.enable = true;
+    localsend.enable = true;
     neovim.enable = true;
     nh.enable = true;
     regreet.enable = true;

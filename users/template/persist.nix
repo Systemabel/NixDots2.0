@@ -9,6 +9,8 @@
 
           # .config folders from flake:
           ".config/anyrun"
+          ".config/BraveSoftware"
+          ".config/cargo"
           ".config/fuzzel"
           ".config/ghostty"
           ".config/hypr"
@@ -16,6 +18,7 @@
           ".config/matugen"
           ".config/niri"
           ".config/nix-search-tv"
+          ".config/rustup"
           ".config/sunsetr"
           ".config/television"
           ".config/xdg-desktop-portal-termfilechooser"
@@ -23,6 +26,7 @@
 
           # .config folders from private repo:
           ".config/goverlay"
+          ".config/lact"
           ".config/MangoHud"
           ".config/noctalia"
           ".config/pipewire"
@@ -38,6 +42,7 @@
 
           # other one-offs:
           ".local/share/Trash" # deserves some experimentation
+          ".local/share/org.localsend.localsend_app"
           ".mozilla" # not backed up to github. Too many files.
           ".pki"
           ".plasticity"
@@ -47,7 +52,8 @@
           "archroot" # empty mount-point folder
           "Documents"
           "Games" # empty mount-point and symlink location for steam
-          "Pictures/Wallpapers"
+          "Projects"
+          "Media"
         ];
         files = [
           ".config/starship.toml"

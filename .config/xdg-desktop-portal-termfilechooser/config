@@ -1,5 +1,6 @@
 [filechooser]
 # prioritizes `yazi-wrapper.sh` in `$XDG_CONFIG_HOME` dir over `/usr/local/share` and `/usr/share` dirs
+# TODO it's still necessary to keep yazi-wrapper.sh in the .config directory because nixpkgs hasn't updated the package to reflect the change.
 env=TERMCMD="ghostty -e"
 cmd=yazi-wrapper.sh
 default_dir=$HOME
