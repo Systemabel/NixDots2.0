@@ -2,13 +2,13 @@
 with pkgs; {
   environment.systemPackages = let
     hardware = [
-      # note: audio: services.pipewire{ alsa, pulse, jack, wireplumber }
+      # note: audio: services.audio{ alsa, pulse, jack, wireplumber }
       brightnessctl
       ddcutil
       mesa
       vulkan-tools
       # qmk
-      # note: services.nact.enable = true --> in config
+      # note: services.lact.enable = true --> in config
     ];
     security = [
       keepassxc
@@ -91,8 +91,7 @@ with pkgs; {
 
     # ---
     userApps = [
-      # TODO servo # this one is pretty broken as of right now... won't build for some reason.
-      # -- check if it has to do with the zram
+      # TODO servo # This is a rust browser in early alpha. Still broken, but getting developed. Maybe someday
       firefox
       brave
       kodi-wayland
@@ -140,6 +139,7 @@ with pkgs; {
       tealdeer
       translate-shell
       trash-cli
+      unzip
       wl-clipboard
       yazi
       yaziPlugins.smart-enter
