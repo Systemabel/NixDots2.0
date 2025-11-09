@@ -4,17 +4,21 @@
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
+    wlr.enable = true;
     extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome # Required for niri screenshare
+      xdg-desktop-portal-gtk # Required generally for niri
+
       kdePackages.xdg-desktop-portal-kde
-      xdg-desktop-portal-termfilechooser
-      xdg-desktop-portal-wlr
+      xdg-desktop-portal-termfilechooser # My pick of file chooser!
       # this apparently conflicts with wlr.enable = true
     ];
     config = {
       common = {
-        default = ["kde"];
+        default = ["gnome" "gtk"];
         "org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
         "org.freedesktop.impl.portal.OpenURI" = ["termfilechooser"];
+        "org.freedesktop.impl.portal.ScreenCast" = ["gnome"];
       };
     };
     #   wlr.enable = true;

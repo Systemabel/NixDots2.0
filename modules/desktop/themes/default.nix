@@ -1,7 +1,7 @@
 {...}: {
   imports = [
     ./fonts.nix
-    ./pleasepleasedark.nix
+    # ./pleasepleasedark.nix
   ];
 
   # TODO: figure out how theming works with gtk and qt

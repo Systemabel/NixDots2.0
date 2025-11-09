@@ -20,19 +20,6 @@
     style = "breeze";
   };
 
-  # System-wide XDG configuration for theming
-  xdg = {
-    portal = {
-      enable = true;
-      config = {
-        common = {
-          default = ["kde"];
-          "org.freedesktop.impl.portal.Settings" = ["kde"];
-        };
-      };
-    };
-  };
-
   # Create basic theme configuration files
   environment.etc = {
     # GTK3 settings
