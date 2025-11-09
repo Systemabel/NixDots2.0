@@ -4,4 +4,5 @@
   # TODO auto-updater app?
   # TODO zen-browser
   clipvault = pkgs.callPackage ./clipvault {};
+  pianoteq = pkgs.callPackage ./pianoteq {};
 }
