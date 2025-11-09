@@ -10,45 +10,20 @@
 in {
   programs.spicetify = {
     enable = lib.mkDefault true;
-    theme = spicePkgs.themes.dribbblish;
-    # theme = {
-    #   name = "Hazy";
-    #   src = pkgs.fetchFromGitHub {
-    #     owner = "Astromations";
-    #     repo = "Hazy";
-    #     rev = "main";
-    #     hash = "sha256-pbl+b71IAObgZk8gVzYoPVaHkHRk4wL+fut6kJEzEOo=";
-    #   };
 
-    #   injectCss = true;
-    #   injectThemeJs = true;
-    #   # replaceColors = true;
-    #   overwriteAssets = true;
-    # };
+    # enabledExtensions = with spicePkgs.extensions; [
+    # betterGenres
+    # history
+    # keyboardShortcut
+    # lastfm
+    # listPlaylistsWithSong
+    # oldLikeButton
+    # # oldSidebar
+    # # playlistIcons
+    # playlistIntersection
+    # shuffle
+    # ];
 
-    colorScheme = "lunar";
-    # colorScheme = "Base";
-
-    # customColorScheme = {
-    # button = accent;
-    # button-active = accent;
-    # tab-active = accent;
-    # player = background;
-    # main = background;
-    # sidebar = background;
-    # };
-
-    enabledExtensions = with spicePkgs.extensions; [
-      betterGenres
-      history
-      keyboardShortcut
-      lastfm
-      listPlaylistsWithSong
-      oldLikeButton
-      # oldSidebar
-      # playlistIcons
-      playlistIntersection
-      shuffle
-    ];
+    theme = spicePkgs.themes.default;
   };
 }
